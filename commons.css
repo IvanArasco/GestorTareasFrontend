@@ -1,0 +1,28 @@
+h1.block-title{
+    font-size: var(--block-title-size-lg);
+}
+h2.block-title{
+    font-size: var(--block-title-size-md);
+}
+h3.block-title{
+    font-size: var(--block-title-size-xs);
+}
+
+/* Escritorio ancho */
+@media (min-width: 1280px) { }
+
+/* Escritorio estándar */
+@media (min-width: 1024px) { }
+
+/* tablet y superiores */
+@media (min-width: 768px) { }
+
+/* solo tablet */
+@media (min-width: 768px)
+and (max-width: 1023px) { }
+
+/* solo móvil grande */
+@media (max-width: 767px) { }
+
+/* solo móvil estándar-pequeños */
+@media (max-width: 576px) { }
