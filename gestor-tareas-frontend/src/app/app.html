@@ -16,22 +16,29 @@
         <div class="collapse navbar-collapse" id="navMenu">
           <ul class="navbar-nav ms-auto">
             <section id="login-container">
+
+              <!-- GUEST -->
               <li class="nav-item list-inline-item login">
                 <a class="btn btn-success" routerLink="/login">Iniciar sesión</a>
               </li>
               <li class="nav-item list-inline-item register">
                 <a class="btn btn-primary" href="#">¿Nuevo usuario?</a>
               </li>
+              <!-- AUTH -->
               <li class="nav-item list-inline-item logout">
                 <a class="btn btn-danger" href="#">Cerrar sesión</a>
               </li>
+              <!-- IS ADMIN TRUE -->
+              <li class="nav-item ms-3 list-inline-item">
+                <a routerLink="/create-card" class="btn btn-primary" id="new-card">Nueva tarea</a>
+              </li>
+              <!-- AUTH USER ID SESSION -->
               <li class="nav-item ms-3 list-inline-item">
                 <a routerLink="/cards" class="btn btn-primary" id="user-cards">Ver Tarjetas asociadas</a>
               </li>
             </section>
           </ul>
         </div>
-
       </div>
     </nav>
   </div>
