@@ -1,1 +1,56 @@
-<router-outlet />
+<header id="site-header">
+  <div class="container">
+    <div class="title-area">
+      <h1 class="block-title">
+        <a routerLink="/">Listado de Tareas</a>
+      </h1>
+    </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item list-inline-item linkedin">
+              <a class="btn btn-primary" href="https://www.linkedin.com/in/ivan-arasco-millan/" target="_blank">
+                LinkedIn
+              </a>
+            </li>
+
+            <section id="login-container">
+              <li class="nav-item list-inline-item login">
+                <a class="btn btn-success" routerLink="/login">Iniciar sesión</a>
+              </li>
+              <li class="nav-item list-inline-item register">
+                <a class="btn btn-primary" href="#">¿Nuevo usuario?</a>
+              </li>
+              <li class="nav-item list-inline-item logout">
+                <a class="btn btn-danger" href="#">Cerrar sesión</a>
+              </li>
+              <li class="nav-item ms-3 list-inline-item">
+                <a routerLink="/cards" class="btn btn-primary" id="user-cards">Ver Tarjetas asociadas</a>
+              </li>
+            </section>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="site-main-content">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="d-flex menu-bot"></div>
+  </div>
+</footer>

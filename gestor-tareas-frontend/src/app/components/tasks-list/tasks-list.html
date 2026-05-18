@@ -5,13 +5,9 @@
 (delete)="onDelete($event)" → @Output(): escucha el evento
 $event es el valor emitido por el hijo — el id de la tarea
 -->
-<app-tarea-card
-[task]="task"
-(complete)="onComplete($event)"
-(delete)="onDelete($event)"
-/>
+<app-task-card [task]="task" (complete)="onComplete($event)" (delete)="onDelete($event)" />
 } @empty {
 <p class="text-muted text-center py-4">
-No hay tareas disponibles
+    No hay tareas disponibles
 </p>
 }
