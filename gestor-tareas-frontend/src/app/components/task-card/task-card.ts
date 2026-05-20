@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { TaskResponseDto } from '../../models/task.model';
 import { TaskStatePipe } from '../../pipes/task-state-pipe';
 import { NgClass } from '@angular/common';
@@ -14,6 +14,17 @@ export class TaskCard {
 
   // @Input() — recibe la tarea del padre
   @Input() task!: TaskResponseDto;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['task']) {
+      const tareaAnterior = changes['task'].previousValue;
+      const tareaNueva = changes['task'].currentValue;
+
+      if (!changes['task'].firstChange) {
+        console.log('La tarea cambió:', tareaAnterior, '→', tareaNueva);
+      }
+    }
+  }
 
   // @Output() — emite un evento al padre cuando se completa la tarea
   // EventEmitter<number> indica que el evento lleva un número (el id)

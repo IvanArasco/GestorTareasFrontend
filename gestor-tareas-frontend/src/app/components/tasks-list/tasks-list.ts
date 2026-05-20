@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit} from '@angular/core';
 import { TaskCard } from '../task-card/task-card';
-import { TaskResponseDto } from '../../models/task.model';
+import { Task } from '../../services/task';
 
 @Component({
   selector: 'app-tasks-list',
@@ -9,18 +9,29 @@ import { TaskResponseDto } from '../../models/task.model';
   styleUrl: './tasks-list.css',
 })
 
-export class TasksList {
-   tasks: TaskResponseDto[] = []; // TO DO get tasks array
+export class TasksList implements OnInit, OnDestroy {
+
+  protected taskService = inject(Task);
+
+  private timer?: ReturnType<typeof setInterval>;
+
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe();
+
+    this.timer = setInterval(() => {
+      console.log('Comprobando tareas...');
+    }, 5000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
+  }
 
   onComplete(id: number): void {
-    const task = this.tasks.find(t => t.id === id);
-    if (task) {
-      task.taskStatus = 'Completed';
-    }
+    this.taskService.complete(id).subscribe();
   }
 
   onDelete(id: number): void {
-    this.tasks = this.tasks.filter(t => t.id !== id);
+    this.taskService.delete(id).subscribe();
   }
-
 }

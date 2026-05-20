@@ -25,8 +25,9 @@
                 <a class="btn btn-primary" href="#">¿Nuevo usuario?</a>
               </li>
               <!-- AUTH -->
+               @if (authService.isAuth()) {
               <li class="nav-item list-inline-item logout">
-                <a class="btn btn-danger" href="#">Cerrar sesión</a>
+                <a class="btn btn-danger" (click)="authService.logout()">Cerrar sesión</a>
               </li>
               <!-- IS ADMIN TRUE -->
               <li class="nav-item ms-3 list-inline-item">
@@ -36,6 +37,7 @@
               <li class="nav-item ms-3 list-inline-item">
                 <a routerLink="/cards" class="btn btn-primary" id="user-cards">Ver Tarjetas asociadas</a>
               </li>
+            }
             </section>
           </ul>
         </div>
@@ -46,7 +48,12 @@
 
 <main class="site-main-content">
   <div class="container">
-    <router-outlet></router-outlet>
+        @if (authService.estaAutenticado()) {
+      <app-tasks-list />
+    } @else {
+      <app-login />
+    }
+    <router-outlet/>
   </div>
 </main>
 
