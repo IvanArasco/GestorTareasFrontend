@@ -11,7 +11,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './register.css',
 })
 export class Register implements OnInit {
-  
+
   private authService = inject(AuthService);
   private router = inject(Router);
   private title = inject(Title);
@@ -23,15 +23,20 @@ export class Register implements OnInit {
   error = '';
 
   ngOnInit(): void {
-    this.title.setTitle('GestorTareas — Registro de usuario');
+    this.title.setTitle('GestorTareas — Registro');
   }
 
   onSubmit(): void {
     this.authService
       .register(this.username, this.password, this.email, this.birthdate)
       .subscribe({
-        next: () => this.router.navigate(['/tasks']),
-        error: (err) => console.error('Error en el registro:', err)
+        next: () => {
+          this.title.setTitle('GestorTareas — Mis tareas');
+          this.router.navigate(['/tasks']);
+        },
+        error: () => {
+          this.error = 'Email o contraseña incorrectos.';
+        }
       });
   }
 }
