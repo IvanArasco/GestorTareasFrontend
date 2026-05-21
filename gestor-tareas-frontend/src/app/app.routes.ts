@@ -1,36 +1,30 @@
 import { Routes } from '@angular/router';
-import { TasksList } from './components/tasks-list/tasks-list';
-import { Login } from './components/login/login';
-import { TaskCard } from './components/task-card/task-card';
-import { authGuard } from './guards/auth.guard'; //
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-     { // Ruta home — accesible sin autenticación
-          path: '/',
-          component: Login
+     {
+          path: '',
+          loadComponent: () =>
+               import('./components/login/login').then(m => m.Login)
      },
-     {   // Ruta de login — accesible sin autenticación
+     {
           path: 'login',
-          component: Login
+          loadComponent: () =>
+               import('./components/login/login').then(m => m.Login)
      },
      {
           path: 'tasks',
           canActivate: [authGuard],
           loadComponent: () =>
-               import('./components/tasks-list/tasks-list')
-                    .then(m => m.TasksList)
+               import('./components/tasks-list/tasks-list').then(m => m.TasksList)
      },
      {
-          // Ruta con parámetro — detalle de una tarea concreta
           path: 'tareas/:id',
           canActivate: [authGuard],
           loadComponent: () =>
-               import('./components/task-card/task-card')
-                    .then(m => m.TaskCard)
+               import('./components/task-card/task-card').then(m => m.TaskCard)
      },
      {
-          // Ruta comodín — para URLs que no existen
-          // Debe ser siempre la última ruta
           path: '**',
           redirectTo: 'login'
      }

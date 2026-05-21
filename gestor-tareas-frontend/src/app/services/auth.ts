@@ -18,7 +18,6 @@ export class AuthService {
 
   private _loginSuccess = signal(false);
   
-
   // Signals públicos de solo lectura
   readonly token = this._token.asReadonly();
   readonly loginSuccess = this._loginSuccess.asReadonly();
