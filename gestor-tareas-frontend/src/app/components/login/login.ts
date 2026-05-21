@@ -19,7 +19,7 @@ export class Login {
 
   onSubmit(): void {
     this.authService.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/tareas']),
+      next: () => this.router.navigate(['/tasks']),
     })
   }
 }

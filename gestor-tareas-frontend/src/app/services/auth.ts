@@ -45,7 +45,6 @@ export class AuthService {
       // tap guarda el token cuando el register tiene éxito y luego inicia sesión
       tap(response => {
         this._registerSuccess.set(true);
-        this._loginSuccess.set(true);
         this._token.set(response.token);
       })
     )

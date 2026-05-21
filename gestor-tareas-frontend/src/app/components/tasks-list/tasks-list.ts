@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit} from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { TaskCard } from '../task-card/task-card';
 import { Task } from '../../services/task';
 
@@ -9,7 +9,7 @@ import { Task } from '../../services/task';
   styleUrl: './tasks-list.css',
 })
 
-export class TasksList implements OnInit, OnDestroy {
+export class TasksList {
 
   protected taskService = inject(Task);
 

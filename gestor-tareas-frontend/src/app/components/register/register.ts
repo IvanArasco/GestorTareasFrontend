@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class Register {
   private authService = inject(AuthService);
   private router = inject(Router);
-  
+
   username = '';
   birthdate = '';
   email = '';
@@ -22,7 +22,7 @@ export class Register {
     this.authService
     .register(this.username, this.password, this.email, this.birthdate)
     .subscribe({
-        next: () => this.router.navigate(['/tareas']),
+        next: () => this.router.navigate(['/tasks']),
         error: (err) => console.error('Error en el registro:', err)
       });
   }
