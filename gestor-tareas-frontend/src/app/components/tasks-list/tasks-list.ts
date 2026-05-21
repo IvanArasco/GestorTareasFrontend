@@ -1,6 +1,7 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TaskCard } from '../task-card/task-card';
 import { Task } from '../../services/task';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tasks-list',
@@ -12,9 +13,11 @@ import { Task } from '../../services/task';
 export class TasksList {
 
   protected taskService = inject(Task);
+  private title = inject(Title);
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe();
+    this.title.setTitle('GestorTareas — Listado de tareas');
   }
 
   onComplete(id: number): void {
