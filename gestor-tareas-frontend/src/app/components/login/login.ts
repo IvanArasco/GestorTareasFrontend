@@ -19,7 +19,7 @@ export class Login implements OnInit {
 
   email = '';
   password = '';
-  error: string = '';
+  error = '';
 
   ngOnInit(): void {
     this.title.setTitle('GestorTareas — Iniciar sesión');

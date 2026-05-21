@@ -17,6 +17,7 @@ export class Register {
   birthdate = '';
   email = '';
   password = '';
+  error = '';
 
   onSubmit(): void {
     this.authService

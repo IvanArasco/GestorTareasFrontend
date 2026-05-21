@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth';
   selector: 'app-navbar',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './navbar.component.html'
+  templateUrl: './navbar.html'
 })
 export class Navbar {
   protected authService = inject(AuthService);
