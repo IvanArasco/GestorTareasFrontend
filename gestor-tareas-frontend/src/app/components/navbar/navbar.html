@@ -1,9 +1,37 @@
-<a class="nav-link" routerLink="/tasks" routerLinkActive="active">
-    Tareas
-</a>
+<header id="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <div class="title-area">
+                <h1 class="block-title">
+                    <a class="navbar-brand" routerLink="/">Listado de Tareas</a>
+                </h1>
+            </div>
 
-@if (authService.isAuth()) {
-<button class="btn btn-outline-light btn-sm" (click)="onLogout()">
-    Cerrar sesión
-</button>
-}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse login-container" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <!-- GUEST -->
+                    @if (!authService.isAuth()) {
+                    <li class="nav-item">
+                        <a class="btn btn-success" routerLink="/login">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary" routerLink="/register">¿Nuevo usuario?</a>
+                    </li>
+                    <!-- AUTH -->
+                    } @else {
+                    <li class="nav-item">
+                        <a class="btn btn-primary" routerLink="/tasks" routerLinkActive="active">Mis tareas</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <button class="btn btn-danger" (click)="onLogout()">Cerrar sesión</button>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
