@@ -13,18 +13,8 @@ export class TasksList {
 
   protected taskService = inject(Task);
 
-  private timer?: ReturnType<typeof setInterval>;
-
   ngOnInit(): void {
     this.taskService.getTasks().subscribe();
-
-    this.timer = setInterval(() => {
-      console.log('Comprobando tareas...');
-    }, 5000);
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.timer);
   }
 
   onComplete(id: number): void {

@@ -52,7 +52,8 @@ export class Task {
   // GET /api/tareas/:id
   getTaskById(id: number) {
     return this.http.get<TaskResponseDto>(
-      `${this.baseUrl}/tasks/${id}`);
+      `${this.baseUrl}/tasks/${id}`, { headers: this.headers }
+    );
   }
 
   complete(id: number) {
