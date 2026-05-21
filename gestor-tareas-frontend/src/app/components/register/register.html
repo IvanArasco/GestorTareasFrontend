@@ -1,0 +1,7 @@
+<form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="text" name="username" placeholder="Nombre de usuario" />
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" />
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Password" />
+    <input type="date" [(ngModel)]="birthdate" name="birthdate" placeholder="Fecha de nacimiento" />
+    <button type="submit">Crear usuario</button>
+</form>

@@ -17,6 +17,7 @@ export class AuthService {
   private _token = signal<string | null>(null);
 
   private _loginSuccess = signal(false);
+  private _registerSuccess = signal(false);
   
   // Signals públicos de solo lectura
   readonly token = this._token.asReadonly();
@@ -30,6 +31,20 @@ export class AuthService {
     ).pipe(
       // tap guarda el token cuando el login tiene éxito
       tap(response => {
+        this._loginSuccess.set(true);
+        this._token.set(response.token);
+      })
+    )
+  }
+
+  register(username: string, password: string, email: string, birthdate: string){
+    return this.http.post<LoginResponseDto>(
+      `${this.baseUrl}/auth/register`,
+      { username, email, password, birthdate }
+    ).pipe(
+      // tap guarda el token cuando el register tiene éxito y luego inicia sesión
+      tap(response => {
+        this._registerSuccess.set(true);
         this._loginSuccess.set(true);
         this._token.set(response.token);
       })

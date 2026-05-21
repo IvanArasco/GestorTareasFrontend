@@ -5,15 +5,15 @@ import { AuthService } from '../services/auth';
 // Un guard funcional es simplemente una función que devuelve
 // true (acceso permitido) o false / UrlTree (acceso denegado)
 export const authGuard: CanActivateFn = (route, state) => {
-const authService = inject(AuthService);
-const router = inject(Router);
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-if (authService.isAuth()) {
-// El usuario tiene token — permitir el acceso
-return true;
-}
+  if (authService.isAuth()) {
+    // El usuario tiene token — permitir el acceso (no al login)
+    return true;
+  }
 
-// No tiene token — redirigir al login
-// router.createUrlTree() crea una UrlTree para redirigir
-return router.createUrlTree(['/login']);
+  // No tiene token — redirigir al login
+  // router.createUrlTree() crea una UrlTree para redirigir
+  return router.createUrlTree(['/login']);
 };

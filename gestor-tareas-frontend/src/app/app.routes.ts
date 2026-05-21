@@ -1,16 +1,23 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth-guard';
+import { guestGuard } from './guards/guest-guard';
 
 export const routes: Routes = [
      {
-          path: '',
+          // Nos redirige al login para cargar ahí el componente 1 vez.
+          path: '', redirectTo: 'login', pathMatch: 'full' 
+     },
+     {
+          path: 'login',
+          canActivate: [guestGuard],
           loadComponent: () =>
                import('./components/login/login').then(m => m.Login)
      },
      {
-          path: 'login',
+          path: 'register',
+          canActivate: [guestGuard],
           loadComponent: () =>
-               import('./components/login/login').then(m => m.Login)
+               import('./components/register/register').then(m => m.Register)
      },
      {
           path: 'tasks',
