@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html'
 })
-export class NavbarComponent {
+export class Navbar {
   protected authService = inject(AuthService);
   private router = inject(Router);
 
