@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class LoginComponent {
+export class Login {
 
   protected authService = inject(AuthService);
 
