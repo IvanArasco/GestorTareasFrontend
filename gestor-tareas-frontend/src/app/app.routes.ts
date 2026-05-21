@@ -4,8 +4,7 @@ import { guestGuard } from './guards/guest-guard';
 
 export const routes: Routes = [
      {
-          // Nos redirige al login para cargar ahí el componente 1 vez.
-          path: '', redirectTo: 'login', pathMatch: 'full' 
+          path: '', redirectTo: 'login', pathMatch: 'full'
      },
      {
           path: 'login',
@@ -29,7 +28,7 @@ export const routes: Routes = [
           path: 'tareas/:id',
           canActivate: [authGuard],
           loadComponent: () =>
-               import('./components/task-card/task-card').then(m => m.TaskCard)
+               import('./components/task-detail/task-detail').then(m => m.TaskDetail)
      },
      {
           path: '**',

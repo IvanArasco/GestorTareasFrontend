@@ -1,1 +1,9 @@
-<p>navbar works!</p>
+<a class="nav-link" routerLink="/tasks" routerLinkActive="active">
+    Tareas
+</a>
+
+@if (authService.isAuth()) {
+<button class="btn btn-outline-light btn-sm" (click)="onLogout()">
+    Cerrar sesión
+</button>
+}
