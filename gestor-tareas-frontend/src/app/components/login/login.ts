@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -17,15 +17,22 @@ export class Login implements OnInit {
   private router = inject(Router);
   private title = inject(Title);
 
-  email = '';
-  password = '';
-  error = '';
+  private fb = inject(FormBuilder);
+
+  error = "";
+
+  form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+
+  })
 
   ngOnInit(): void {
     this.title.setTitle('GestorTareas — Iniciar sesión');
   }
   onSubmit(): void {
-    this.authService.login(this.email, this.password)
+    const { email, password} = this.form.getRawValue();
+    this.authService.login(email!, password!)
       .subscribe({
         next: () => {
           this.title.setTitle('GestorTareas — Mis tareas');

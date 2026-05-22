@@ -10,13 +10,13 @@
           <div class="mb-3">
             <label class="form-label" for="email">Email</label>
             <input type="email" id="email" name="email" class="form-control" placeholder="usuario@empresa.com"
-              [(ngModel)]="email">
+              [formControl]="email">
             <div class="form-text">Nunca compartiremos tu email sin tu consentimiento.</div>
           </div>
 
           <div class="mb-3">
             <label class="form-label" for="password">Contraseña</label>
-            <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password">
+            <input type="password" id="password" name="password" class="form-control" [formControl]="password">
           </div>
           <button type="submit" class="btn btn-primary w-100">Entrar</button>
         </form>

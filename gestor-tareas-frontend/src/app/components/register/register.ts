@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -16,27 +16,37 @@ export class Register implements OnInit {
   private router = inject(Router);
   private title = inject(Title);
 
-  username = '';
-  birthdate = '';
-  email = '';
-  password = '';
-  error = '';
+  private fb = inject(FormBuilder);
+
+  error = "";
+
+  form = this.fb.group({
+    username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+    birthdate: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+  })
 
   ngOnInit(): void {
     this.title.setTitle('GestorTareas — Registro');
   }
 
   onSubmit(): void {
-    this.authService
-      .register(this.username, this.password, this.email, this.birthdate)
-      .subscribe({
-        next: () => {
-          this.title.setTitle('GestorTareas — Mis tareas');
-          this.router.navigate(['/tasks']);
-        },
-        error: () => {
-          this.error = 'Email o contraseña incorrectos.';
-        }
-      });
+    if (this.form.valid) {
+      const { username, password, email, birthdate } = this.form.getRawValue();
+      this.authService
+        .register(username!, password!, email!, birthdate!)
+        .subscribe({
+          next: () => {
+            this.title.setTitle('GestorTareas — Mis tareas');
+            this.router.navigate(['/tasks']);
+          },
+          error: () => {
+            this.error = 'Email o contraseña incorrectos.';
+          }
+        });
+    } else {
+      this.error = 'Email o contraseña incorrectos.';
+    }
   }
 }
