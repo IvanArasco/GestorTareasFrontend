@@ -1,4 +1,4 @@
-<!--@if (task()) {
+@if (task()) {
 <div class="card p-4">
 
   
@@ -16,7 +16,7 @@
         'bg-warning':   task()!.taskStatus === 'Pending',
         'bg-primary':   task()!.taskStatus === 'InProgress',
         'bg-secondary': task()!.taskStatus === 'Cancelled'
-      }">{{ task()!.taskStatus | taskState }}</span>
+      }">{{ task()!.taskStatus }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
             <span>Prioridad</span>
@@ -83,4 +83,4 @@
 </div>
 } @else {
 <p class="text-muted text-center py-4">Tarea no encontrada.</p>
-}-->
+}

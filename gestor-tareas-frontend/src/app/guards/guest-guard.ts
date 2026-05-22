@@ -12,5 +12,5 @@ export const guestGuard: CanActivateFn = (route, state) => {
   }
 
   // Ya está autenticado — redirigir a tareas
-  return router.createUrlTree(['/tareas']);
+  return router.createUrlTree(['/tasks']);
 };

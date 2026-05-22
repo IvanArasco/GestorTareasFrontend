@@ -14,14 +14,15 @@ export class AuthService {
   private baseUrl = 'https://localhost:7001/api';
 
   // Signal privado — fuente de verdad del token
-  private _token = signal<string | null>(null);
+  private _token = signal<string | null>((localStorage.getItem('token')));
 
-  private _loginSuccess = signal(false);
-  private _registerSuccess = signal(false);
-  
+  private setToken(token: string): void {
+    localStorage.setItem('token', token);
+    this._token.set(token);
+  }
+
   // Signals públicos de solo lectura
   readonly token = this._token.asReadonly();
-  readonly loginSuccess = this._loginSuccess.asReadonly();
   readonly isAuth = computed(() => this._token() !== null);
 
   login(email: string, password: string) {
@@ -30,27 +31,22 @@ export class AuthService {
       { email, password }
     ).pipe(
       // tap guarda el token cuando el login tiene éxito
-      tap(response => {
-        this._loginSuccess.set(true);
-        this._token.set(response.token);
-      })
+      tap(response => { this.setToken(response.token); })
     )
   }
 
-  register(username: string, password: string, email: string, birthdate: string){
+  register(username: string, password: string, email: string, birthdate: string) {
     return this.http.post<LoginResponseDto>(
       `${this.baseUrl}/auth/register`,
       { username, email, password, birthdate }
     ).pipe(
       // tap guarda el token cuando el register tiene éxito y luego inicia sesión
-      tap(response => {
-        this._registerSuccess.set(true);
-        this._token.set(response.token);
-      })
+      tap(response => { this.setToken(response.token); })
     )
   }
 
   logout(): void {
+    localStorage.removeItem('token');
     this._token.set(null);
   }
 }

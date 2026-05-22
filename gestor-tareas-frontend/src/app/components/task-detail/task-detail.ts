@@ -3,9 +3,11 @@ import { Task } from '../../services/task';
 import { TaskResponseDto } from '../../models/task.model';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-task-detail',
+  imports: [NgClass],
   templateUrl: './task-detail.html',
   styleUrl: './task-detail.css',
 })
