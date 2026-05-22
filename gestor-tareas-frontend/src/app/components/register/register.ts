@@ -33,7 +33,7 @@ export class Register implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { username, password, email, birthdate } = this.form.getRawValue();
+      const { username, password, email, birthdate } = this.form.value;
       this.authService
         .register(username!, password!, email!, birthdate!)
         .subscribe({
