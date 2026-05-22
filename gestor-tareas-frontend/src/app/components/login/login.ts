@@ -24,23 +24,29 @@ export class Login implements OnInit {
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
-
   })
+
+  get email() { return this.form.get('email'); }
+  get password() { return this.form.get('password'); }
 
   ngOnInit(): void {
     this.title.setTitle('GestorTareas — Iniciar sesión');
   }
   onSubmit(): void {
-    const { email, password} = this.form.getRawValue();
-    this.authService.login(email!, password!)
-      .subscribe({
-        next: () => {
-          this.title.setTitle('GestorTareas — Mis tareas');
-          this.router.navigate(['/tasks']);
-        },
-        error: () => {
-          this.error = 'Email o contraseña incorrectos';
-        }
-      });
+    if (this.form.valid) {
+      const { email, password } = this.form.value;
+      this.authService.login(email!, password!)
+        .subscribe({
+          next: () => {
+            this.title.setTitle('GestorTareas — Mis tareas');
+            this.router.navigate(['/tasks']);
+          },
+          error: () => {
+            this.error = 'Email o contraseña incorrectos';
+          }
+        });
+    } else {
+      this.error = 'Completa todos los campos.';
+    }
   }
 }

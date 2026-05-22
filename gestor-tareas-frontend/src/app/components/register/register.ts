@@ -46,7 +46,7 @@ export class Register implements OnInit {
           }
         });
     } else {
-      this.error = 'Email o contraseña incorrectos.';
+      this.error = 'Completa todos los campos.';
     }
   }
 }
