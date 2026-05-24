@@ -1,7 +1,7 @@
 <div class="card p-3 mb-3">
     <div class="d-flex justify-content-between align-items-center mb-2">
-        <h3 class="card-title h6 mb-0">{{ task.title }}</h3>
-        <span class="badge bg-info">{{ task.taskType }}</span>
+        <p class="card-title">{{ task.title }}</p>
+        <span class="badge bg-info">{{ task.taskType | taskType }}</span>
     </div>
 
     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -14,12 +14,13 @@
             {{ task.taskStatus | taskState }}
         </span>
 
-
         <div class="d-flex gap-2">
             <!-- (click) llama a onComplete() que emite el @Output() completar -->
-            <button class="btn btn-success btn-sm" [disabled]="task.taskStatus === 'Completed'" (click)="onComplete()">
+            @if (task.taskStatus !== 'Completed') {
+            <button class="btn btn-success btn-sm" (click)="onComplete()">
                 Completar
             </button>
+            }
 
             <!-- (click) llama a onDelete() que emite el @Output() eliminar -->
             <button class="btn btn-danger btn-sm" (click)="onDelete()">

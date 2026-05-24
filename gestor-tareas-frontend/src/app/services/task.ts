@@ -18,17 +18,21 @@ export class Task {
 
   readonly tasks = this._tasks.asReadonly(); // signal público de solo lectura — los componentes solo leen
 
-  // computed — se recalcula automáticamente cuando cambia _tasks ( pending - in progress - completed)
-  readonly pendingTasks = computed(() =>
-    this._tasks().filter(t => t.taskStatus === 'Pending').length
+  // computed - se recalcula automáticamente cuando cambia _tasks ( pending - in progress - completed)
+  readonly totalTasks = computed(() =>
+    this._tasks().filter(t => t.taskStatus).length
+  );
+
+    readonly pendingTasks = computed(() =>
+    this._tasks().filter(t => t.taskStatus === 'Pending')
   );
 
   readonly inProgressTasks = computed(() =>
-    this._tasks().filter(t => t.taskStatus === 'InProgress').length
+    this._tasks().filter(t => t.taskStatus === 'InProgress')
   );
 
   readonly completedTasks = computed(() =>
-    this._tasks().filter(t => t.taskStatus === 'Completed').length
+    this._tasks().filter(t => t.taskStatus === 'Completed')
   );
 
   private get headers(): HttpHeaders {

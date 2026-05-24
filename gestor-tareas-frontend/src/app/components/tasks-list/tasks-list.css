@@ -1,0 +1,6 @@
+.tasks-list {
+    .col-12 {
+        overflow-y: auto;
+       max-height: calc(3 * 145px);
+    }
+}

@@ -4,31 +4,37 @@ import { guestGuard } from './guards/guest-guard';
 
 export const routes: Routes = [
      {
-          path: '', redirectTo: 'login', pathMatch: 'full'
+          path: '', redirectTo: 'tasks', pathMatch: 'full'
      },
      {
-          path: 'login',
+          path: 'login', // inicio de sesión
           canActivate: [guestGuard],
           loadComponent: () =>
                import('./components/login/login').then(m => m.Login)
      },
      {
-          path: 'register',
+          path: 'register', // creación de cuenta
           canActivate: [guestGuard],
           loadComponent: () =>
                import('./components/register/register').then(m => m.Register)
      },
      {
-          path: 'tasks',
+          path: 'tasks', // listado completo de tareas
           canActivate: [authGuard],
           loadComponent: () =>
                import('./components/tasks-list/tasks-list').then(m => m.TasksList)
      },
      {
-          path: 'tasks/:id',
+          path: 'tasks/:id', // tarea específica
           canActivate: [authGuard],
           loadComponent: () =>
                import('./components/task-detail/task-detail').then(m => m.TaskDetail)
+     },
+      {
+          path: 'tasks/user/:id', // listado de tareas del usuario
+          canActivate: [authGuard],
+          loadComponent: () =>
+                import('./components/tasks-list/tasks-list').then(m => m.TasksList)
      },
      {
           path: '**',

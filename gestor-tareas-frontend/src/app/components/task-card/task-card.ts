@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { TaskResponseDto } from '../../models/task.model';
 import { TaskStatePipe } from '../../pipes/task-state-pipe';
 import { NgClass } from '@angular/common';
+import { TaskTypePipe } from '../../pipes/task-type-pipe';
 
 @Component({
   selector: 'app-task-card',
-  imports: [NgClass, TaskStatePipe],
+  imports: [NgClass, TaskStatePipe, TaskTypePipe],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
 })
