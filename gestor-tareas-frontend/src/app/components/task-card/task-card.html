@@ -6,13 +6,15 @@
 
     <div class="d-flex justify-content-between align-items-center mt-3">
         <span class="badge" [ngClass]="{
-        'bg-success':   task.taskStatus === 'Completed',
-        'bg-warning':   task.taskStatus === 'Pending',
-        'bg-primary':   task.taskStatus === 'InProgress',
-        'bg-secondary': task.taskStatus === 'Cancelled'
-    }">
+            'bg-success':   task.taskStatus === 'Completed',
+            'bg-warning':   task.taskStatus === 'Pending',
+            'bg-primary':   task.taskStatus === 'InProgress',
+            'bg-secondary': task.taskStatus === 'Cancelled'
+        }">
             {{ task.taskStatus | taskState }}
         </span>
+
+        <span class="expiration-date"> {{ task.expirationDate | daysLeft }}</span>
 
         <div class="d-flex gap-2">
             <!-- (click) llama a onStart() que emite el @Output() iniciar -->
@@ -28,6 +30,11 @@
                 Completar
             </button>
             }
+
+             <button class="btn btn-success btn-sm" (click)="onShowDetails()">
+                Ver
+            </button>
+
 
             <!-- (click) llama a onDelete() que emite el @Output() eliminar -->
             <button class="btn btn-danger btn-sm" (click)="onDelete()">
