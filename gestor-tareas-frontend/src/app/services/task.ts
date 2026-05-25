@@ -23,7 +23,7 @@ export class Task {
     this._tasks().filter(t => t.taskStatus).length
   );
 
-    readonly pendingTasks = computed(() =>
+  readonly pendingTasks = computed(() =>
     this._tasks().filter(t => t.taskStatus === 'Pending')
   );
 
@@ -61,11 +61,22 @@ export class Task {
   }
 
   complete(id: number) {
-    return this.http.put<void>(
-      `${this.baseUrl}/tasks/${id}`, {}, { headers: this.headers }
+    return this.http.patch<void>(
+      `${this.baseUrl}/tasks/${id}/complete`, {}, { headers: this.headers }
     ).pipe(
       tap(() => this._tasks.update(tasks =>
         tasks.map(t => t.id === id ? { ...t, taskStatus: 'Completed' as Status } : t)
+      )),
+      catchError(err => this.showError(err))
+    );
+  }
+
+  start(id: number) {
+    return this.http.patch<void>(
+      `${this.baseUrl}/tasks/${id}/start`, {}, { headers: this.headers }
+    ).pipe(
+      tap(() => this._tasks.update(tasks =>
+        tasks.map(t => t.id === id ? { ...t, taskStatus: 'InProgress' as Status } : t)
       )),
       catchError(err => this.showError(err))
     );

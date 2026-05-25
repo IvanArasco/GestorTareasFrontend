@@ -15,8 +15,15 @@
         </span>
 
         <div class="d-flex gap-2">
+            <!-- (click) llama a onStart() que emite el @Output() iniciar -->
+            @if (task.taskStatus !== 'Completed' && task.taskStatus !== 'InProgress') {
+            <button class="btn btn-primary btn-sm" (click)="onStart()">
+                Iniciar
+            </button>
+            }
+
             <!-- (click) llama a onComplete() que emite el @Output() completar -->
-            @if (task.taskStatus !== 'Completed') {
+            @if (task.taskStatus !== 'Completed' && task.taskStatus !== 'Pending') {
             <button class="btn btn-success btn-sm" (click)="onComplete()">
                 Completar
             </button>

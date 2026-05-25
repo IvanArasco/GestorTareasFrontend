@@ -21,13 +21,17 @@ export class TasksList {
     this.generateTasks();
   }
 
+  onStart(id: number): void {
+    this.taskService.start(id).subscribe();
+  }
+
   onComplete(id: number): void {
     this.taskService.complete(id).subscribe();
   }
-
+  
   onDelete(id: number): void {
     this.taskService.delete(id).subscribe();
-  } 
+  }
 
   private generateTasks() { // Solo test
     this.taskService['_tasks'].set([
