@@ -27,6 +27,11 @@ export class Register implements OnInit {
     password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
   })
 
+  get username() { return this.form.get('username'); }
+  get birthdate() { return this.form.get('birthdate'); }
+  get email() { return this.form.get('email'); }
+  get password() { return this.form.get('password'); }
+  
   ngOnInit(): void {
     this.title.setTitle('GestorTareas — Registro');
   }

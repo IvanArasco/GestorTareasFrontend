@@ -1,16 +1,42 @@
-export type Status = 'Pending' | 'InProgress' | 'Completed' | 'Cancelled';
-export type Priority = 'Low' | 'Medium' | 'High' | 'Critical';
-export type DevelopmentArea = 'Frontend' | 'Backend' | 'BD';
-export type Frequency = 'Daily' | 'Weekly' | 'Monthly';
+export enum Priority {
+  Low = 'Low',
+  Medium = 'Medium',
+  High = 'High',
+  Critical = 'Critical'
+}
 
-export interface TaskResponseDto {
-  id: number;
+export enum Status {
+  Pending = 'Pending',
+  InProgress = 'InProgress',
+  Completed = 'Completed',
+  Cancelled = 'Cancelled'
+}
+
+export enum DevelopmentArea {
+  Frontend = 'Frontend',
+  Backend = 'Backend',
+  BD = 'BD'
+}
+
+export enum Frequency {
+  Daily = 'Daily',
+  Weekly = 'Weekly',
+  Monthly = 'Monthly'
+}
+
+export enum TaskType {
+  Bug = 'Bug',
+  Improvement = 'Improvement',
+  NewFeature = 'NewFeature',
+  RecurringTask = 'RecurringTask'
+}
+
+interface TaskBaseDto {
   title: string;
-  taskStatus: Status;
+  description?: string;
   taskPriority: Priority;
   expirationDate: string;
-  taskType: string;
-  userName: string;
+  taskType: TaskType;
 
   // Bug
   expectedBehaviour?: string;
@@ -27,4 +53,12 @@ export interface TaskResponseDto {
   frequency?: Frequency;
   lastExecution?: string;
   nextExecution?: string;
+}
+
+export interface TaskRequestDto extends TaskBaseDto { }
+
+export interface TaskResponseDto extends TaskBaseDto {
+  id: number;
+  taskStatus: Status;
+  userName: string;
 }

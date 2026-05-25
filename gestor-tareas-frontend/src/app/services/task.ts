@@ -1,5 +1,5 @@
 import { computed, Injectable, signal, inject } from '@angular/core';
-import { Status, TaskResponseDto } from '../models/task.model';
+import { Status, TaskRequestDto, TaskResponseDto } from '../models/task.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, of, tap } from 'rxjs';
 import { AuthService } from './auth';
@@ -47,8 +47,7 @@ export class Task {
     return this.http.get<TaskResponseDto[]>(
       `${this.baseUrl}/tasks`, { headers: this.headers }
     ).pipe(
-      //map(respuesta => respuesta.datos),
-      tap(tasks => this._tasks.set(tasks)), // actualizar el Signal
+      tap(tasks => this._tasks.set(tasks)),
       catchError(err => this.showError(err))
     );
   }
@@ -57,18 +56,29 @@ export class Task {
   getTaskById(id: number) {
     return this.http.get<TaskResponseDto>(
       `${this.baseUrl}/tasks/${id}`, { headers: this.headers }
+    ).pipe(
+      catchError(err => this.showError(err))
     );
   }
 
- // GET /api/tasks/user:id
+  // GET /api/tasks/user:id
   getTasksByUser(userId: string) {
-  return this.http.get<TaskResponseDto[]>(
-    `${this.baseUrl}/tasks/by-user/${userId}`, { headers: this.headers }
-  ).pipe(
-    tap(tasks => this._tasks.set(tasks)),
-    catchError(err => this.showError(err))
-  );
-}
+    return this.http.get<TaskResponseDto[]>(
+      `${this.baseUrl}/tasks/by-user/${userId}`, { headers: this.headers }
+    ).pipe(
+      tap(tasks => this._tasks.set(tasks)),
+      catchError(err => this.showError(err))
+    );
+  }
+
+  createTask(dto: TaskRequestDto) {
+    return this.http.post<TaskResponseDto>(
+      `${this.baseUrl}/tasks`, dto, { headers: this.headers }
+    ).pipe(
+      tap(task => this._tasks.update(tasks => [...tasks, task])),
+      catchError(err => this.showError(err))
+    );
+  }
 
   complete(id: number) {
     return this.http.patch<void>(

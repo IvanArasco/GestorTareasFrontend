@@ -9,10 +9,10 @@ export class TaskStatePipe implements PipeTransform {
 
   transform(status: Status): string {
     switch (status) {
-      case 'Completed':  return 'Completada';
-      case 'Pending':    return 'Pendiente';
-      case 'InProgress': return 'En progreso';
-      case 'Cancelled':  return 'Cancelada';
+      case Status.Completed:  return 'Completada';
+      case Status.Pending:    return 'Pendiente';
+      case Status.InProgress: return 'En progreso';
+      case Status.Cancelled:  return 'Cancelada';
     }
   }
 }

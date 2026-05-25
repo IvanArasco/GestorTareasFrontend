@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label class="form-label" for="title">Título*</label>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">+</div>
+        </div>
+        <input type="text" id="title" name="title" class="form-control" formControlName="title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="description">Descripción </label>
+        <div class="input-group mb-2">
+            <input type="text" id="description" name="description" class="form-control" formControlName="description">
+        </div>
+
+        <label class="form-label" for="taskType">Tipo de tarea:</label>
+        <select formControlName="taskType" class="form-select">
+            @for (type of taskTypes; track type) {
+            <option [value]="type">{{ type | taskType }}</option>
+            }
+        </select>
+
+        <label class="form-label" for="taskPriority">Prioridad de tarea:</label>
+        <select formControlName="taskPriority" class="form-select">
+            @for (p of priorities; track p) {
+            <option [value]="p">{{ p | taskPriority }}</option>
+            }
+        </select>
+
+        <label class="form-label" for="expirationDate">Fecha de expiración</label>
+        <div class="input-group mb-2">
+            <input type="date" id="expiration-date" name="expiration-date" class="form-control"
+                formControlName="expirationDate" />
+        </div>
+
+        <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100">Crear tarea</button>
+
+    </div>
+</form>

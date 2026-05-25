@@ -25,16 +25,22 @@ export const routes: Routes = [
                import('./components/tasks-list/tasks-list').then(m => m.TasksList)
      },
      {
-          path: 'tasks/:id', // tarea específica
+          path: 'tasks/create', // formulario creación tarea
           canActivate: [authGuard],
           loadComponent: () =>
-               import('./components/task-detail/task-detail').then(m => m.TaskDetail)
+               import('./components/task-form/task-form').then(m => m.TaskForm)
      },
      {
           path: 'tasks/user/:id', // listado de tareas del usuario
           canActivate: [authGuard],
           loadComponent: () =>
                import('./components/tasks-list/tasks-list').then(m => m.TasksList)
+     },
+     {
+          path: 'tasks/:id', // tarea específica
+          canActivate: [authGuard],
+          loadComponent: () =>
+               import('./components/task-detail/task-detail').then(m => m.TaskDetail)
      },
      {
           path: '**',
