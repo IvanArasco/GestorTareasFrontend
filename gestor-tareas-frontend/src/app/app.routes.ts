@@ -30,11 +30,11 @@ export const routes: Routes = [
           loadComponent: () =>
                import('./components/task-detail/task-detail').then(m => m.TaskDetail)
      },
-      {
+     {
           path: 'tasks/user/:id', // listado de tareas del usuario
           canActivate: [authGuard],
           loadComponent: () =>
-                import('./components/tasks-list/tasks-list').then(m => m.TasksList)
+               import('./components/tasks-list/tasks-list').then(m => m.TasksList)
      },
      {
           path: '**',

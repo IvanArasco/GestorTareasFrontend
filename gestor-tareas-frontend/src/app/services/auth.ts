@@ -25,6 +25,13 @@ export class AuthService {
   readonly token = this._token.asReadonly();
   readonly isAuth = computed(() => this._token() !== null);
 
+  readonly userId = computed(() => {
+    const token = this._token();
+    if (!token) return null;
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] as string;
+  });
+
   login(email: string, password: string) {
     return this.http.post<LoginResponseDto>(
       `${this.baseUrl}/auth/login`,

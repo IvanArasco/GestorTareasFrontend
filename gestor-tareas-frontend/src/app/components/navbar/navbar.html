@@ -24,7 +24,7 @@
                     <!-- AUTH -->
                     } @else {
                     <li class="nav-item">
-                        <a class="btn btn-primary" routerLink="/tasks" routerLinkActive="active">Mis tareas</a>
+                        <a class="btn btn-primary" [routerLink]="['/tasks/user', authService.userId()]" routerLinkActive="active">Mis tareas</a>
                     </li>
                     <li class="nav-item ms-2">
                         <button class="btn btn-danger" (click)="onLogout()">Cerrar sesión</button>

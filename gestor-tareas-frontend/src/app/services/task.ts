@@ -42,7 +42,7 @@ export class Task {
     });
   }
 
-  // GET /api/tareas
+  // GET /api/tasks
   getTasks() {
     return this.http.get<TaskResponseDto[]>(
       `${this.baseUrl}/tasks`, { headers: this.headers }
@@ -53,12 +53,22 @@ export class Task {
     );
   }
 
-  // GET /api/tareas/:id
+  // GET /api/tasks/:id
   getTaskById(id: number) {
     return this.http.get<TaskResponseDto>(
       `${this.baseUrl}/tasks/${id}`, { headers: this.headers }
     );
   }
+
+ // GET /api/tasks/user:id
+  getTasksByUser(userId: string) {
+  return this.http.get<TaskResponseDto[]>(
+    `${this.baseUrl}/tasks/by-user/${userId}`, { headers: this.headers }
+  ).pipe(
+    tap(tasks => this._tasks.set(tasks)),
+    catchError(err => this.showError(err))
+  );
+}
 
   complete(id: number) {
     return this.http.patch<void>(
