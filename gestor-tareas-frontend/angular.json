@@ -26,6 +26,7 @@
               }
             ],
             "styles": [
+              "@tabler/icons-webfont/dist/tabler-icons.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
