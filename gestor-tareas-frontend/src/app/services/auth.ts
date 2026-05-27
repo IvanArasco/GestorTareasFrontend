@@ -25,12 +25,20 @@ export class AuthService {
   readonly token = this._token.asReadonly();
   readonly isAuth = computed(() => this._token() !== null);
 
-  readonly userId = computed(() => {
+  private readonly _payload = computed(() => {
     const token = this._token();
     if (!token) return null;
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] as string;
+    return JSON.parse(atob(token.split('.')[1]));
   });
+
+  readonly userId = computed(() => {
+    const id = this._payload()?.['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    return id ? Number(id) : null;
+  });
+
+  readonly isAdmin = computed(() =>
+    this._payload()?.['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Admin'
+  );
 
   login(email: string, password: string) {
     return this.http.post<LoginResponseDto>(

@@ -61,4 +61,5 @@ export interface TaskResponseDto extends TaskBaseDto {
   id: number;
   taskStatus: Status;
   userName: string;
+  userId: number;
 }

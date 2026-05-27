@@ -63,7 +63,7 @@
     @if (task()!.frequency) {
     <div class="mb-3">
         <h6>Frecuencia</h6>
-        <p>{{ task()!.frequency }}</p>
+        <p>{{ task()!.frequency | taskFrequency }}</p>
         <h6>Última ejecución</h6>
         <p>{{ task()!.lastExecution }}</p>
         <h6>Próxima ejecución</h6>

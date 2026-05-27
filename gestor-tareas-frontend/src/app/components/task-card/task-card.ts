@@ -1,10 +1,11 @@
 import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { TaskResponseDto } from '../../models/task.model';
 import { TaskStatePipe } from '../../pipes/task-state-pipe';
-import { NgClass } from '@angular/common';
 import { TaskTypePipe } from '../../pipes/task-type-pipe';
 import { DaysLeftPipe } from '../../pipes/days-left-pipe';
+import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-task-card',
@@ -19,6 +20,8 @@ export class TaskCard {
   @Input() task!: TaskResponseDto;
 
   private router = inject(Router);
+
+  protected authService = inject(AuthService);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['task']) {

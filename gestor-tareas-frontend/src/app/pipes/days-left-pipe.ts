@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DaysLeftPipe implements PipeTransform {
   transform(ExpirationDate: string | Date | null): string {
    const today = new Date();
-  const limit = new Date(ExpirationDate!);
+    const limit = new Date(ExpirationDate!);
 
   const difference = limit.getTime() - today.getTime();
   const days = Math.ceil(difference / (1000 * 60 * 60 * 24));

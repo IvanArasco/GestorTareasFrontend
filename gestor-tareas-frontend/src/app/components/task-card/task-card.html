@@ -14,7 +14,7 @@
             {{ task.taskStatus | taskState }}
         </span>
 
-        <span class="expiration-date"> {{ task.expirationDate | daysLeft }}</span>
+        <span class="expiration-date"> {{ task.expirationDate | daysLeft }} </span>
 
         <div class="d-flex gap-2">
             <!-- (click) llama a onStart() que emite el @Output() iniciar -->
@@ -31,15 +31,15 @@
             </button>
             }
 
-             <button class="btn btn-success btn-sm" (click)="onShowDetails()">
+            <button class="btn btn-success btn-sm" (click)="onShowDetails()">
                 Ver
             </button>
-
-
-            <!-- (click) llama a onDelete() que emite el @Output() eliminar -->
-            <button class="btn btn-danger btn-sm" (click)="onDelete()">
-                Eliminar
-            </button>
+            @if (authService.isAdmin() || task.userId === authService.userId()) {
+                <!-- (click) llama a onDelete() que emite el @Output() eliminar -->
+                <button class="btn btn-danger btn-sm" (click)="onDelete()">
+                    Eliminar
+                </button>
+            }
         </div>
     </div>
 </div>
