@@ -8,19 +8,19 @@
     <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item d-flex justify-content-between">
             <span>Estado</span>
-            {{task()!.taskStatus | taskState }}
+            <p>{{ task()!.taskStatus | taskState }}</p>
         </li>
         <li class="list-group-item d-flex justify-content-between">
             <span>Prioridad</span>
-            <span>{{ task()!.taskPriority | taskPriority}}</span>
+            <p>{{ task()!.taskPriority | taskPriority}}</p>
         </li>
         <li class="list-group-item d-flex justify-content-between">
             <span>Fecha de expiración</span>
-            <span>{{ task()!.expirationDate | daysLeft }}</span>
+            <p>{{ task()!.expirationDate | daysLeft }}</p>
         </li>
         <li class="list-group-item d-flex justify-content-between">
             <span>Usuario</span>
-            <span>{{ task()!.userName }}</span>
+            <p>{{ task()!.userName }}</p>
         </li>
     </ul>
 
