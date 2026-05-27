@@ -1,8 +1,7 @@
 import { computed, Injectable, signal, inject } from '@angular/core';
 import { Status, TaskRequestDto, TaskResponseDto } from '../models/task.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, of, tap } from 'rxjs';
-import { AuthService } from './auth';
+import { HttpClient } from '@angular/common/http';
+import { catchError, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +10,6 @@ import { AuthService } from './auth';
 export class Task {
 
   private http = inject(HttpClient);
-  private authService = inject(AuthService);
   private baseUrl = 'https://localhost:7001/api';
 
   private _tasks = signal<TaskResponseDto[]>([]);
@@ -24,28 +22,21 @@ export class Task {
   );
 
   readonly pendingTasks = computed(() =>
-    this._tasks().filter(t => t.taskStatus === 'Pending')
+    this._tasks().filter(t => t.taskStatus === Status.Pending)
   );
 
   readonly inProgressTasks = computed(() =>
-    this._tasks().filter(t => t.taskStatus === 'InProgress')
+    this._tasks().filter(t => t.taskStatus === Status.InProgress)
   );
 
   readonly completedTasks = computed(() =>
-    this._tasks().filter(t => t.taskStatus === 'Completed')
+    this._tasks().filter(t => t.taskStatus === Status.Completed)
   );
-
-  private get headers(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.authService.token()}`
-    });
-  }
 
   // GET /api/tasks
   getTasks() {
     return this.http.get<TaskResponseDto[]>(
-      `${this.baseUrl}/tasks`, { headers: this.headers }
+      `${this.baseUrl}/tasks`
     ).pipe(
       tap(tasks => this._tasks.set(tasks)),
       catchError(err => this.showError(err))
@@ -55,7 +46,7 @@ export class Task {
   // GET /api/tasks/:id
   getTaskById(id: number) {
     return this.http.get<TaskResponseDto>(
-      `${this.baseUrl}/tasks/${id}`, { headers: this.headers }
+      `${this.baseUrl}/tasks/${id}`
     ).pipe(
       catchError(err => this.showError(err))
     );
@@ -64,7 +55,7 @@ export class Task {
   // GET /api/tasks/user:id
   getTasksByUser(userId: string) {
     return this.http.get<TaskResponseDto[]>(
-      `${this.baseUrl}/tasks/by-user/${userId}`, { headers: this.headers }
+      `${this.baseUrl}/tasks/by-user/${userId}`
     ).pipe(
       tap(tasks => this._tasks.set(tasks)),
       catchError(err => this.showError(err))
@@ -73,7 +64,7 @@ export class Task {
 
   createTask(dto: TaskRequestDto) {
     return this.http.post<TaskResponseDto>(
-      `${this.baseUrl}/tasks`, dto, { headers: this.headers }
+      `${this.baseUrl}/tasks`, dto
     ).pipe(
       tap(task => this._tasks.update(tasks => [...tasks, task])),
       catchError(err => this.showError(err))
@@ -82,10 +73,10 @@ export class Task {
 
   complete(id: number) {
     return this.http.patch<void>(
-      `${this.baseUrl}/tasks/${id}/complete`, {}, { headers: this.headers }
+      `${this.baseUrl}/tasks/${id}/complete`, {}
     ).pipe(
       tap(() => this._tasks.update(tasks =>
-        tasks.map(t => t.id === id ? { ...t, taskStatus: 'Completed' as Status } : t)
+        tasks.map(t => t.id === id ? { ...t, taskStatus: Status.Completed } : t)
       )),
       catchError(err => this.showError(err))
     );
@@ -93,10 +84,10 @@ export class Task {
 
   start(id: number) {
     return this.http.patch<void>(
-      `${this.baseUrl}/tasks/${id}/start`, {}, { headers: this.headers }
+      `${this.baseUrl}/tasks/${id}/start`, {}
     ).pipe(
       tap(() => this._tasks.update(tasks =>
-        tasks.map(t => t.id === id ? { ...t, taskStatus: 'InProgress' as Status } : t)
+        tasks.map(t => t.id === id ? { ...t, taskStatus: Status.InProgress } : t)
       )),
       catchError(err => this.showError(err))
     );
@@ -104,7 +95,7 @@ export class Task {
 
   delete(id: number) {
     return this.http.delete<void>(
-      `${this.baseUrl}/tasks/${id}`, { headers: this.headers }
+      `${this.baseUrl}/tasks/${id}`
     ).pipe(
       tap(() => this._tasks.update(tasks => tasks.filter(t => t.id !== id))),
       catchError(err => this.showError(err))

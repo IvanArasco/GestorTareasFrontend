@@ -1,7 +1,7 @@
 @if (task()) {
 <div class="card p-4">
 
-  
+
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="h5 mb-0">{{ task()!.title }}</h2>
         <span class="badge bg-info">{{ task()!.taskType }}</span>
@@ -72,12 +72,17 @@
     }
 
     <div class="d-flex gap-2 mt-3">
+        @if (task()!.taskStatus === 'InProgress'){
         <button class="btn btn-success btn-sm" [disabled]="task()!.taskStatus === 'Completed'" (click)="onComplete()">
             Completar
         </button>
+        }
+
+        @if (authService.isAdmin() || task()!.userId === authService.userId()) {
         <button class="btn btn-danger btn-sm" (click)="onDelete()">
             Eliminar
         </button>
+        }
     </div>
 
 </div>

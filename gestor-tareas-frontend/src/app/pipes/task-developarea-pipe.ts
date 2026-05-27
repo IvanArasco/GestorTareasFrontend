@@ -3,6 +3,7 @@ import { DevelopmentArea } from '../models/task.model';
 
 @Pipe({
   name: 'taskDeveloparea',
+  standalone: true
 })
 export class TaskDevelopareaPipe implements PipeTransform {
    transform(area: DevelopmentArea): string {

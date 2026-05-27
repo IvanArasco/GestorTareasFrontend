@@ -6,11 +6,12 @@ import { Frequency } from '../models/task.model';
   standalone: true
 })
 export class TaskFrequencyPipe implements PipeTransform {
-  transform(frec: Frequency): string {
+  transform(frec: Frequency | undefined): string {
     switch (frec) {
       case Frequency.Daily: return 'Diaria';
       case Frequency.Weekly: return 'Semanal';
       case Frequency.Monthly: return 'Mensual';
+      default: return 'Sin especificar';
     }
   }
 }

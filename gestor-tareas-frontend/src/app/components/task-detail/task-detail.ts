@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { NgClass } from '@angular/common';
 import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-task-detail',
@@ -16,6 +17,7 @@ import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
 export class TaskDetail implements OnInit {
 
   private taskService = inject(Task);
+  protected authService = inject(AuthService);
   private router = inject(Router);
   private title = inject(Title);
 
