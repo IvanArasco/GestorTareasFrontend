@@ -3,13 +3,16 @@ import { Task } from '../../services/task';
 import { TaskResponseDto } from '../../models/task.model';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { NgClass } from '@angular/common';
-import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
 import { AuthService } from '../../services/auth';
+import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
+import { TaskStatePipe } from '../../pipes/task-state-pipe';
+import { TaskTypePipe } from '../../pipes/task-type-pipe';
+import { DaysLeftPipe } from '../../pipes/days-left-pipe';
+import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
 
 @Component({
   selector: 'app-task-detail',
-  imports: [NgClass, TaskFrequencyPipe],
+  imports: [TaskFrequencyPipe, TaskPriorityPipe, TaskStatePipe, TaskTypePipe, DaysLeftPipe],
   templateUrl: './task-detail.html',
   styleUrl: './task-detail.css',
 })
