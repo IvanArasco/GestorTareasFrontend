@@ -4,10 +4,11 @@ import { DaysLeftPipe } from '../../pipes/days-left-pipe';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-task-card',
-  imports: [DaysLeftPipe, TaskPriorityPipe, RouterLink,RouterLinkActive],
+  imports: [NgClass, DaysLeftPipe, TaskPriorityPipe, RouterLink,RouterLinkActive],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
 })

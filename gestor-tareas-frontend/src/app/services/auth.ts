@@ -24,6 +24,7 @@ export class AuthService {
   // Signals públicos de solo lectura
   readonly token = this._token.asReadonly();
   readonly isAuth = computed(() => this._token() !== null);
+  
 
   private readonly _payload = computed(() => {
     const token = this._token();

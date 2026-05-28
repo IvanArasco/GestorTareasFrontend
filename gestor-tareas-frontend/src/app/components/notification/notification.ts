@@ -5,6 +5,7 @@ import { NotificationService } from '../../services/notification';
   selector: 'app-notification',
   standalone: true,
   imports: [],
+  styleUrl: './notification.css',
   template: `
 @if (notificationService.notification(); as n) {
 <div class="notification notification--{{ n.type }}">

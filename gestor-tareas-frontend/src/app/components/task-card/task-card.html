@@ -15,13 +15,14 @@
             }
 
             <!-- (click) llama a onComplete() que emite el @Output() completar -->
-            @if (task.taskStatus !== 'Completed' && task.taskStatus !== 'Pending') {
+            @if (task.taskStatus !== 'Completed' && task.taskStatus !== 'Pending'
+            && (authService.isAdmin() || task.userId === authService.userId())) {
             <button class="btn btn-success btn-sm" (click)="onComplete()">
                 Completar
             </button>
             }
 
-            <button class="btn btn-success btn-sm" (click)="onShowDetails()">
+            <button class="btn btn-show btn-outline-secondary btn-sm" (click)="onShowDetails()">
                 Ver
             </button>
 
@@ -40,6 +41,12 @@
         <a class="task-responsible badge bg-info" [routerLink]="['/tasks/user', task.userId]" routerLinkActive="active">
             {{task.username}}
         </a>
-        <span class="badge bg-info d-inline-block">{{ task.taskPriority | taskPriority }}</span>
+        <span class="badge d-inline-block" [ngClass]="{
+            'bg-success':  task.taskPriority === 'Low',
+            'bg-warning':  task.taskPriority === 'Medium',
+            'bg-danger':   task.taskPriority === 'High',
+            'bg-dark':     task.taskPriority === 'Critical'
+            }">
+            {{ task.taskPriority | taskPriority }}</span>
     </div>
 </div>
