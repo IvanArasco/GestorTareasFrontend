@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { TaskResponseDto } from '../../models/task.model';
 import { DaysLeftPipe } from '../../pipes/days-left-pipe';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -20,17 +20,6 @@ export class TaskCard {
   private router = inject(Router);
 
   protected authService = inject(AuthService);
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['task']) {
-      const tareaAnterior = changes['task'].previousValue;
-      const tareaNueva = changes['task'].currentValue;
-
-      if (!changes['task'].firstChange) {
-        console.log('La tarea cambió:', tareaAnterior, '→', tareaNueva);
-      }
-    }
-  }
 
   // @Output() — emite un evento al padre cuando se inicia la tarea
   // EventEmitter<number> indica que el evento lleva un número (el id)
