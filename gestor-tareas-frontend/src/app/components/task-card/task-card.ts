@@ -25,22 +25,16 @@ export class TaskCard {
   // EventEmitter<number> indica que el evento lleva un número (el id)
   @Output() start = new EventEmitter<number>();
 
-  // @Output() — emite un evento al padre cuando se completa la tarea
-  // EventEmitter<number> indica que el evento lleva un número (el id)
   @Output() complete = new EventEmitter<number>();
 
-  // @Output() — emite un evento al padre cuando se elimina la tarea
   @Output() delete = new EventEmitter<number>();
 
-  // Método que se llama al hacer clic en "Iniciar"
   onStart(): void {
     // emit() dispara el evento y pasa el id al padre
     this.start.emit(this.task.id);
   }
 
-  // Método que se llama al hacer clic en "Complete"
   onComplete(): void {
-    // emit() dispara el evento y pasa el id al padre
     this.complete.emit(this.task.id);
   }
 
@@ -48,7 +42,6 @@ export class TaskCard {
     this.router.navigate(['/tasks', this.task.id]);
   }
 
-  // Método que se llama al hacer clic en "Eliminar"
   onDelete(): void {
     this.delete.emit(this.task.id);
   }
