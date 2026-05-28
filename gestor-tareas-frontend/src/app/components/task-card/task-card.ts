@@ -1,15 +1,13 @@
 import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { TaskResponseDto } from '../../models/task.model';
-import { TaskStatePipe } from '../../pipes/task-state-pipe';
-import { TaskTypePipe } from '../../pipes/task-type-pipe';
 import { DaysLeftPipe } from '../../pipes/days-left-pipe';
-import { NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
 
 @Component({
   selector: 'app-task-card',
-  imports: [NgClass, TaskStatePipe, TaskTypePipe, DaysLeftPipe],
+  imports: [DaysLeftPipe, TaskPriorityPipe, RouterLink,RouterLinkActive],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
 })

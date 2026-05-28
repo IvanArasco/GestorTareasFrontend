@@ -2,9 +2,7 @@
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container">
             <div class="title-area">
-                <h1 class="block-title">
-                    <a class="navbar-brand" routerLink="">Listado de Tareas</a>
-                </h1>
+               <h1 class="block-title"> <a class="navbar-brand" routerLink="">Listado de Tareas</a></h1>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -27,7 +25,7 @@
                         <a class="btn btn-primary" [routerLink]="['/tasks/user', authService.userId()]"
                             routerLinkActive="active">Mis tareas</a>
                     </li>
-                   <li class="nav-item ms-2">
+                    <li class="nav-item ms-2">
                         <a class="btn btn-primary" routerLink="/tasks/create">Crear Tarea</a>
                     </li>
                     <li class="nav-item ms-2">

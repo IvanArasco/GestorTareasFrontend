@@ -16,7 +16,7 @@ export class DaysLeftPipe implements PipeTransform {
   if (totalDays === 0) return 'Vence hoy';
   if (totalDays === 1) return 'Vence mañana';
 
-  return `${this.format(totalDays, today, false)} restantes`;
+  return `Vence en: ${this.format(totalDays, today, false)}`;
 }
 
 private format(totalDays: number, from: Date, expired: boolean): string {

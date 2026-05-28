@@ -15,4 +15,6 @@ import { NotificationService } from '../../services/notification';
 })
 export class NotificationComponent {
   protected notificationService = inject(NotificationService);
+
+  
 }
