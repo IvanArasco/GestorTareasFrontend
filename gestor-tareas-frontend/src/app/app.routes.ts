@@ -31,6 +31,12 @@ export const routes: Routes = [
                import('./components/task-form/task-form').then(m => m.TaskForm)
      },
      {
+          path: 'tasks/edit/:id',
+          canActivate: [authGuard],
+          loadComponent: () =>
+               import('./components/task-form/task-form').then(m => m.TaskForm)
+     },
+     {
           path: 'tasks/user/:id', // listado de tareas del usuario
           canActivate: [authGuard],
           loadComponent: () =>

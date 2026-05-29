@@ -1,8 +1,10 @@
-:root{
-    --color-primary: #63d9e3;
+:root {
+    --color-primary: #107c8c;
+    --color-secondary: #174c46;
     --font-size-base: 16px;
-    --block-title-size-lg: calc(var(--font-size-base) * 2);
-    --block-title-size-md: calc(var(--font-size-base) * 1.5);
-    --block-title-size-xs: calc(var(--font-size-base) * 1.25);
+    --font-size-md: calc(var(--font-size-base) * 0.8);
+    --font-size-xs: calc(var(--font-size-base) * 0.65);
+    --title-size-lg: calc(var(--font-size-base) * 2);
+    --title-size-md: calc(var(--font-size-base) * 1.5);
+    --title-size-xs: calc(var(--font-size-base) * 1.25);
 }
-   

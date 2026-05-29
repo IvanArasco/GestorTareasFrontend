@@ -1,71 +1,100 @@
 @if (task()) {
-<div class="card p-4">
-    <div class="container d-flex flex-direction-column justify-content-center align-items-center">
-        <div class="mb-3">
-            <h2 class="h5 mb-0">{{ task()!.title }}</h2>
-            <span class="badge bg-info">{{ task()!.taskType | taskType }}</span>
+<div class="task-detail-card">
+    <div class="card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0">{{ task()!.title }}</h2>
         </div>
 
         <ul class="list-group list-group-flush mb-3">
-            <li class="list-group-item d-flex justify-content-between">
+            @if (task()!.description) {
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Descripción</span>
+                <span>{{ task()!.description }}</span>
+            </li>
+            }
+            <li class="list-group-item d-flex align-items-center justify-content-between">
                 <span>Estado</span>
-                <p>{{ task()!.taskStatus | taskState }}</p>
+                <span>{{ task()!.taskStatus | taskState }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex align-items-center justify-content-between">
                 <span>Prioridad</span>
-                <p>{{ task()!.taskPriority | taskPriority}}</p>
+                <span>{{ task()!.taskPriority | taskPriority}}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Tipo de tarea</span>
+                <span> {{ task()!.taskType | taskType }}</span>
+            </li>
+            <li class="list-group-item d-flex align-items-center justify-content-between">
                 <span>Fecha de expiración</span>
-                <p>{{ task()!.expirationDate | daysLeft }}</p>
+                <span>{{ task()!.expirationDate | daysLeft }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex align-items-center justify-content-between">
                 <span>Usuario</span>
-                <p>{{ task()!.username }}</p>
+                <span>{{ task()!.username }}</span>
             </li>
+
+            @if (task()!.expectedBehaviour) {
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Comportamiento esperado</span>
+                <span>{{ task()!.expectedBehaviour }}</span>
+            </li>
+            }
+
+            @if (task()!.actualBehaviour) {
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Comportamiento actual</span>
+                <span>{{ task()!.actualBehaviour }}</span>
+            </li>
+            }
+
+            @if (task()!.affectedFeature) {
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Característica afectada</span>
+                <span>{{ task()!.affectedFeature }}</span>
+            </li>
+            }
+
+            @if (task()!.expectedBenefict) {
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Beneficio esperado</span>
+                <span>{{ task()!.expectedBenefict }}</span>
+            </li>
+            }
+
+            @if (task()!.area) {
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Área de desarrollo</span>
+                <span>{{ task()!.area }}</span>
+            </li>
+            }
+
+            @if (task()!.frequency) {
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Frecuencia</span>
+                <span>{{ task()!.frequency | taskFrequency }}</span>
+            </li>
+
+            @if (task()!.lastExecution ){
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Última ejecución</span>
+                <span>{{ task()!.lastExecution }}</span>
+            </li>
+            }
+
+            @if (task()!.nextExecution ){
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Próxima ejecución</span>
+                <span>{{ task()!.nextExecution | daysLeft }}</span>
+            </li>
+            }
+
+            }
         </ul>
 
-        @if (task()!.expectedBehaviour) {
-        <div class="mb-3">
-            <span>Comportamiento esperado</span>
-            <p>{{ task()!.expectedBehaviour }}</p>
-            <span>Comportamiento actual</span>
-            <p>{{ task()!.actualBehaviour }}</p>
-        </div>
-        }
-
-
-        @if (task()!.affectedFeature) {
-        <div class="mb-3">
-            <span>Característica afectada</span>
-            <p>{{ task()!.affectedFeature }}</p>
-            <span>Beneficio esperado</span>
-            <p>{{ task()!.expectedBenefict }}</p>
-        </div>
-        }
-
-
-        @if (task()!.area) {
-        <div class="mb-3">
-            <span>Área de desarrollo</span>
-            <p>{{ task()!.area }}</p>
-        </div>
-        }
-
-
-        @if (task()!.frequency) {
-        <div class="mb-3">
-            <span>Frecuencia</span>
-            <p>{{ task()!.frequency | taskFrequency }}</p>
-            <span>Última ejecución</span>
-            <p>{{ task()!.lastExecution }}</p>
-            <span>Próxima ejecución</span>
-            <p>{{ task()!.nextExecution }}</p>
-        </div>
-        }
-
         <div class="d-flex gap-2 mt-3">
-            @if (task()!.taskStatus === 'InProgress'){
+            @if (task()!.taskStatus === 'InProgress' && (authService.isAdmin() || task()!.userId ===
+            authService.userId()))
+            {
             <button class="btn btn-success btn-sm" [disabled]="task()!.taskStatus === 'Completed'"
                 (click)="onComplete()">
                 Completar

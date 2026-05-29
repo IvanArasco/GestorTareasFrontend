@@ -5,10 +5,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
 import { NgClass } from '@angular/common';
+import { TaskTypePipe } from '../../pipes/task-type-pipe';
 
 @Component({
   selector: 'app-task-card',
-  imports: [NgClass, DaysLeftPipe, TaskPriorityPipe, RouterLink,RouterLinkActive],
+  imports: [NgClass, DaysLeftPipe, TaskPriorityPipe, TaskTypePipe, RouterLink,RouterLinkActive],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
 })
@@ -33,6 +34,10 @@ export class TaskCard {
   onStart(): void {
     // emit() dispara el evento y pasa el id al padre
     this.start.emit(this.task.id);
+  }
+
+  onEdit(): void{
+    this.router.navigate(['/tasks/edit', this.task.id]);
   }
 
   onComplete(): void {
