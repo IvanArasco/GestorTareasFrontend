@@ -1,38 +1,80 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label class="form-label" for="title">Título*</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <div class="input-group-text">+</div>
-        </div>
-        <input type="text" id="title" name="title" class="form-control" formControlName="title">
+<div class="task-form mt-4">
+    <div class="container">
+        <form class="card shadow-sm p-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <label class="form-label" for="title">Título*</label>
+            <div class="input-group">
+                <input type="text" id="title" name="title" class="form-control" formControlName="title">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Descripción </label>
+                <div class="input-group mb-2">
+                    <input type="text" id="description" name="description" class="form-control"
+                        formControlName="description">
+                </div>
+
+                <label class="form-label" for="taskType">Tipo de tarea:</label>
+                <select formControlName="taskType" class="form-select">
+                    @for (type of taskTypes; track type) {
+                    <option [value]="type">{{ type | taskType }}</option>
+                    }
+                </select>
+
+                <label class="form-label" for="taskPriority">Prioridad de tarea:</label>
+                <select formControlName="taskPriority" class="form-select">
+                    @for (p of priorities; track p) {
+                    <option [value]="p">{{ p | taskPriority }}</option>
+                    }
+                </select>
+
+                <label class="form-label" for="expirationDate">Fecha de expiración*</label>
+                <div class="input-group mb-2">
+                    <input type="date" id="expiration-date" name="expiration-date" class="form-control"
+                        formControlName="expirationDate" />
+                </div>
+                @if (selectedTaskType === 'Bug') {
+                <div class="mb-3">
+                    <label class="form-label">Comportamiento actual</label>
+                    <input type="text" class="form-control" formControlName="actualBehaviour">
+                    <label class="form-label">Comportamiento esperado</label>
+                    <input type="text" class="form-control" formControlName="expectedBehaviour">
+                </div>
+                }
+
+                @if (selectedTaskType === 'Improvement') {
+                <div class="mb-3">
+                    <label class="form-label">Característica afectada</label>
+                    <input type="text" class="form-control" formControlName="affectedFeature">
+                    <label class="form-label">Beneficio esperado</label>
+                    <input type="text" class="form-control" formControlName="expectedBenefict">
+                </div>
+                }
+
+                @if (selectedTaskType === 'NewFeature') {
+                <div class="mb-3">
+                    <label class="form-label">Área de desarrollo</label>
+                    <select class="form-select" formControlName="area">
+                        @for (a of developmentAreas; track a) {
+                        <option [value]="a">{{ a }}</option>
+                        }
+                    </select>
+                </div>
+                }
+
+                @if (selectedTaskType === 'RecurringTask') {
+                <div class="mb-3">
+                    <label class="form-label">Frecuencia</label>
+                    <select class="form-select" formControlName="frequency">
+                        @for (f of frequencies; track f) {
+                        <option [value]="f">{{ f }}</option>
+                        }
+                    </select>
+                    <label class="form-label">Próxima ejecución</label>
+                    <input type="date" class="form-control" formControlName="nextExecution">
+                </div>
+                }
+                <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100">Crear tarea</button>
+                <small> Los campos con * son obligatorios</small>
+            </div>
+        </form>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="description">Descripción </label>
-        <div class="input-group mb-2">
-            <input type="text" id="description" name="description" class="form-control" formControlName="description">
-        </div>
-
-        <label class="form-label" for="taskType">Tipo de tarea:</label>
-        <select formControlName="taskType" class="form-select">
-            @for (type of taskTypes; track type) {
-            <option [value]="type">{{ type | taskType }}</option>
-            }
-        </select>
-
-        <label class="form-label" for="taskPriority">Prioridad de tarea:</label>
-        <select formControlName="taskPriority" class="form-select">
-            @for (p of priorities; track p) {
-            <option [value]="p">{{ p | taskPriority }}</option>
-            }
-        </select>
-
-        <label class="form-label" for="expirationDate">Fecha de expiración</label>
-        <div class="input-group mb-2">
-            <input type="date" id="expiration-date" name="expiration-date" class="form-control"
-                formControlName="expirationDate" />
-        </div>
-
-        <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100">Crear tarea</button>
-
-    </div>
-</form>
+</div>

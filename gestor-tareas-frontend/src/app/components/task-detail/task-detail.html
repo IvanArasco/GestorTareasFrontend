@@ -64,7 +64,8 @@
     }
 
     <div class="d-flex gap-2 mt-3">
-        @if (task()!.taskStatus === 'InProgress'){
+        @if (task()!.taskStatus === 'InProgress' && (authService.isAdmin() || task()!.userId === authService.userId()))
+        {
         <button class="btn btn-success btn-sm" [disabled]="task()!.taskStatus === 'Completed'" (click)="onComplete()">
             Completar
         </button>

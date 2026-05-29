@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Priority, TaskRequestDto, TaskType } from '../../models/task.model';
+import { DevelopmentArea, Frequency, Priority, TaskRequestDto, TaskType } from '../../models/task.model';
 import { Title } from '@angular/platform-browser';
 import { Task } from '../../services/task';
 import { Router } from '@angular/router';
@@ -25,6 +25,8 @@ export class TaskForm {
 
   readonly priorities = Object.values(Priority);
   readonly taskTypes = Object.values(TaskType);
+  readonly developmentAreas = Object.values(DevelopmentArea);
+  readonly frequencies = Object.values(Frequency);
 
   error = "";
 
@@ -33,7 +35,22 @@ export class TaskForm {
     description: ['', [Validators.minLength(10), Validators.maxLength(200)]],
     taskPriority: [Priority.Low, [Validators.required]],
     taskType: [TaskType.Bug, [Validators.required]],
-    expirationDate: ['', [Validators.required]]
+    expirationDate: ['', [Validators.required]],
+
+    // Bug
+    actualBehaviour: [''],
+    expectedBehaviour: [''],
+
+    // Improvement
+    affectedFeature: [''],
+    expectedBenefict: [''],
+
+    // NewFeature
+    area: [''],
+
+    // RecurringTask
+    frequency: [''],
+    nextExecution: [''],
   })
 
   get taskTitle() { return this.form.get('title'); }
@@ -41,6 +58,9 @@ export class TaskForm {
   get taskPriority() { return this.form.get('taskPriority'); }
   get taskType() { return this.form.get('taskType'); }
   get expirationDate() { return this.form.get('expirationDate'); }
+  get selectedTaskType() { return this.form.get('taskType')?.value; }
+
+
 
   ngOnInit(): void {
     this.title.setTitle('GestorTareas - Crear tarea');

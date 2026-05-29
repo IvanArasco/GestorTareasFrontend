@@ -15,8 +15,7 @@
             }
 
             <!-- (click) llama a onComplete() que emite el @Output() completar -->
-            @if (task.taskStatus !== 'Completed' && task.taskStatus !== 'Pending'
-            && (authService.isAdmin() || task.userId === authService.userId())) {
+            @if (task.taskStatus === 'InProgress' && (authService.isAdmin() || task.userId === authService.userId())) {
             <button class="btn btn-success btn-sm" (click)="onComplete()">
                 Completar
             </button>
