@@ -33,7 +33,7 @@ export class TaskDetail implements OnInit {
         this.task.set(task);
       });
 
-    this.title.setTitle('GestorTareas — Detalle de tarea');
+    this.title.setTitle('GestorTareas - Detalle de tarea');
 
   }
 

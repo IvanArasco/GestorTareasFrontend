@@ -33,7 +33,7 @@ export class Register implements OnInit {
   get password() { return this.form.get('password'); }
   
   ngOnInit(): void {
-    this.title.setTitle('GestorTareas — Registro');
+    this.title.setTitle('GestorTareas - Registro');
   }
 
   onSubmit(): void {

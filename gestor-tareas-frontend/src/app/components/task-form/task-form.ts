@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DevelopmentArea, Frequency, Priority, TaskRequestDto, TaskType } from '../../models/task.model';
 import { Title } from '@angular/platform-browser';
 import { Task } from '../../services/task';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TaskTypePipe } from '../../pipes/task-type-pipe';
 import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
 import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
@@ -19,8 +19,11 @@ export class TaskForm {
   // @Input() — recibe la tarea del padre
   @Input() task!: TaskRequestDto;
 
+  taskId?: number;
+
   private title = inject(Title);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   protected taskService = inject(Task);
   private fb = inject(FormBuilder);
 
@@ -62,19 +65,36 @@ export class TaskForm {
   get selectedTaskType() { return this.form.get('taskType')?.value; }
 
   ngOnInit(): void {
-    this.title.setTitle('GestorTareas - Crear tarea');
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.taskId = Number(id);
+
+      this.title.setTitle('GestorTareas - Editar tarea');
+    } else {
+
+      this.title.setTitle('GestorTareas - Crear tarea');
+
+    }
   }
 
   onSubmit(): void {
     if (this.form.valid) {
       const dto = this.form.value as TaskRequestDto;
-      this.taskService.createTask(dto).subscribe({
-        next: () => this.router.navigate(['/tasks']),
-        error: () => this.error = 'La creación de la tarea ha fallado.'
-      });
+      if (this.taskId !== undefined) {
+        this.taskService.edit(this.taskId, dto).subscribe({
+          next: () => this.router.navigate(['/tasks']),
+          error: () => this.error = 'La edición de la tarea ha fallado.'
+        });
+
+      } else {
+        this.taskService.createTask(dto).subscribe({
+          next: () => this.router.navigate(['/tasks']),
+          error: () => this.error = 'La creación de la tarea ha fallado.'
+        });
+      }
     } else {
       this.error = 'Completa todos los campos.';
     }
   }
-
 }
