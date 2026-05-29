@@ -1,28 +1,78 @@
-h1.block-title{
+h1.block-title {
     font-size: var(--block-title-size-lg);
 }
-h2.block-title{
+
+h2.block-title {
     font-size: var(--block-title-size-md);
 }
-h3.block-title{
+
+h3.block-title {
     font-size: var(--block-title-size-xs);
 }
 
+.arrow-back {
+    position: relative;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+    padding-left: 2rem;
+    color: var(--color-primary);
+    font-weight: 600;
+
+    &::before {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        content: '';
+        background-image: url('/left-arrow.svg');
+        background-size: cover;
+        right: 55px;
+    }
+
+    &:hover {
+        &::before {
+            background-image: url('/left-arrow-hover.png');
+        }
+    }
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+
+    &:hover {
+        background-color: white !important;
+        color: #0d6efd !important;
+    }
+
+}
+
+.btn-success {
+    &:hover {
+        background-color: white !important;
+        color: #198754 !important;
+    }
+}
+
+.btn-danger {
+    &:hover {
+        background-color: white !important;
+        color: #dc3545 !important;
+    }
+}
+
 /* Escritorio ancho */
-@media (min-width: 1280px) { }
+@media (min-width: 1280px) {}
 
 /* Escritorio estándar */
-@media (min-width: 1024px) { }
+@media (min-width: 1024px) {}
 
 /* tablet y superiores */
-@media (min-width: 768px) { }
+@media (min-width: 768px) {}
 
 /* solo tablet */
-@media (min-width: 768px)
-and (max-width: 1023px) { }
+@media (min-width: 768px) and (max-width: 1023px) {}
 
 /* solo móvil grande */
-@media (max-width: 767px) { }
+@media (max-width: 767px) {}
 
 /* solo móvil estándar-pequeños */
-@media (max-width: 576px) { }
+@media (max-width: 576px) {}

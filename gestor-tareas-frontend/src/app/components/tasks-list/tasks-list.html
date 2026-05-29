@@ -10,7 +10,7 @@
 
         <div class="tasks-list row">
             <div class="pending-tasks col-12 col-lg-4 col-md-6">
-                <h3 class="block-title">Tareas pendientes:</h3>
+                <h2 class="block-title">Tareas pendientes:</h2>
                 @for (task of taskService.pendingTasks(); track task.id) {
                 <app-task-card [task]="task" (start)="onStart($event)" (delete)="onDelete($event)" />
                 } @empty {
@@ -18,7 +18,7 @@
                 }
             </div>
             <div class="inprogress-tasks col-12 col-lg-4 col-md-6">
-                <h3 class="block-title">Tareas en progreso:</h3>
+                <h2 class="block-title">Tareas en progreso:</h2>
                 @for (task of taskService.inProgressTasks(); track task.id) {
                 <app-task-card [task]="task" (complete)="onComplete($event)" (delete)="onDelete($event)" />
                 }@empty {
@@ -26,7 +26,7 @@
                 }
             </div>
             <div class="completed-tasks col-12 col-lg-4 col-md-6">
-                <h3 class="block-title">Tareas completadas:</h3>
+                <h2 class="block-title">Tareas completadas:</h2>
                 @for (task of taskService.completedTasks(); track task.id) {
                 <app-task-card [task]="task" (delete)="onDelete($event)" />
                 }@empty {

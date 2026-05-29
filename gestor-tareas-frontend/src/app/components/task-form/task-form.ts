@@ -3,14 +3,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DevelopmentArea, Frequency, Priority, TaskRequestDto, TaskType } from '../../models/task.model';
 import { Title } from '@angular/platform-browser';
 import { Task } from '../../services/task';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { TaskTypePipe } from '../../pipes/task-type-pipe';
 import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
 import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
 
 @Component({
   selector: 'app-task-form',
-  imports: [ReactiveFormsModule, TaskTypePipe, TaskPriorityPipe, TaskFrequencyPipe],
+  imports: [ReactiveFormsModule, TaskTypePipe, TaskPriorityPipe, TaskFrequencyPipe, RouterLink],
   templateUrl: './task-form.html',
   styleUrl: './task-form.css',
 })

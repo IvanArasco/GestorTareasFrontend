@@ -1,6 +1,7 @@
 :root {
-    --color-primary: #107c8c;
+    --color-primary: #198754; 
     --color-secondary: #174c46;
+    --color-tertiary: #107c8c;
     --font-size-base: 16px;
     --font-size-md: calc(var(--font-size-base) * 0.8);
     --font-size-xs: calc(var(--font-size-base) * 0.65);
