@@ -30,7 +30,7 @@ export class Login implements OnInit {
   get password() { return this.form.get('password'); }
 
   ngOnInit(): void {
-    this.title.setTitle('GestorTareas — Iniciar sesión');
+    this.title.setTitle('GestorTareas - Iniciar sesión');
   }
   onSubmit(): void {
     if (this.form.valid) {

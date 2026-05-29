@@ -1,7 +1,0 @@
-#site-header{
-    .container{
-        display:flex;
-        justify-content: space-between;
-        /*background-color: var(--color-primary);*/
-    }
-}
