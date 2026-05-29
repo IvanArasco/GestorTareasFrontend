@@ -71,6 +71,21 @@ export class Task {
     );
   }
 
+  edit(id: number, dto: TaskRequestDto){
+    return this.http.put<TaskResponseDto>(
+      `${this.baseUrl}/tasks/${id}`, dto
+    ).pipe(
+      tap(updatedTask => {
+        if (updatedTask) {
+          this._tasks.update(tasks => 
+            tasks.map(t => t.id === id ? updatedTask : t)
+          );
+        }
+      }),
+      catchError(err => this.showError(err))
+    );
+  }
+
   complete(id: number) {
     return this.http.patch<void>(
       `${this.baseUrl}/tasks/${id}/complete`, {}

@@ -27,8 +27,6 @@ export class TaskCard {
   // EventEmitter<number> indica que el evento lleva un número (el id)
   @Output() start = new EventEmitter<number>();
 
-  @Output() edit = new EventEmitter<number>();
-
   @Output() complete = new EventEmitter<number>();
 
   @Output() delete = new EventEmitter<number>();
@@ -39,7 +37,7 @@ export class TaskCard {
   }
 
   onEdit(): void{
-    this.edit.emit(this.task.id);
+    this.router.navigate(['/tasks/edit', this.task.id]);
   }
 
   onComplete(): void {

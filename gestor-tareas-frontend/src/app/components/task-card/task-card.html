@@ -3,13 +3,20 @@
         <span class="badge bg-warning text-dark">
             <span> {{ task.taskType | taskType }}</span>
         </span>
-        <span class="badge d-inline-block" [ngClass]="{
+
+        <div class="d-flex align-items-center gap-2">
+            <span class="badge d-inline-block" [ngClass]="{
             'bg-success':  task.taskPriority === 'Low',
             'bg-warning':  task.taskPriority === 'Medium',
             'bg-danger':   task.taskPriority === 'High',
             'bg-dark':     task.taskPriority === 'Critical'
-            }">
-            {{ task.taskPriority | taskPriority }}</span>
+            }"> {{ task.taskPriority | taskPriority }}</span>
+
+            @if (authService.isAdmin() || task.userId === authService.userId()) {
+                <button class="btn-edit" (click)="onEdit()"></button>
+            }
+        </div>
+
     </div>
     <div class="d-flex align-items-center justify-content-between mb-2 gap-5 ">
         <p class="card-title">{{ task.title }}</p>
@@ -51,10 +58,5 @@
         <a class="task-responsible badge bg-info" [routerLink]="['/tasks/user', task.userId]" routerLinkActive="active">
             {{task.username}}
         </a>
-        @if (authService.isAdmin() || task.userId === authService.userId()) {
-        <!-- (click) llama a onEdit() que emite el @Output() edit -->
-        <button class="btn-edit" (click)="onEdit()">
-        </button>
-        }
     </div>
 </div>
