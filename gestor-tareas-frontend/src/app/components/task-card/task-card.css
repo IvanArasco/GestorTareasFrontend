@@ -21,6 +21,8 @@
     }
 
     .btn-primary {
+        background-color: var(--color-primary);
+
         &:hover {
             background-color: white !important;
             color: #0d6efd !important;
@@ -39,6 +41,20 @@
         &:hover {
             background-color: white !important;
             color: #dc3545 !important;
+        }
+    }
+
+    .btn-edit {
+        border: 0;
+        width: 24px;
+        height: 24px;
+        background-image: url('/pencil.png');
+        background-size: cover;
+        transition: 0.2s ease-in-out;
+
+
+        &:hover {
+            background-image: url(/pencil-hover.png);
         }
     }
 }

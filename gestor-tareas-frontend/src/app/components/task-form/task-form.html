@@ -1,4 +1,4 @@
-<div class="task-form mt-4">
+<div class="task-form">
     <div class="container">
         <form class="card shadow-sm p-4" [formGroup]="form" (ngSubmit)="onSubmit()">
             <label class="form-label" for="title">Título*</label>
@@ -65,7 +65,7 @@
                     <label class="form-label">Frecuencia</label>
                     <select class="form-select" formControlName="frequency">
                         @for (f of frequencies; track f) {
-                        <option [value]="f">{{ f }}</option>
+                        <option [value]="f">{{ f | taskFrequency}}</option>
                         }
                     </select>
                     <label class="form-label">Próxima ejecución</label>

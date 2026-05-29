@@ -43,7 +43,7 @@ export class Register implements OnInit {
         .register(username!, password!, email!, birthdate!)
         .subscribe({
           next: () => {
-            this.title.setTitle('GestorTareas — Mis tareas');
+            this.title.setTitle('GestorTareas - Mis tareas');
             this.router.navigate(['/tasks']);
           },
           error: () => {

@@ -6,10 +6,11 @@ import { Task } from '../../services/task';
 import { Router } from '@angular/router';
 import { TaskTypePipe } from '../../pipes/task-type-pipe';
 import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
+import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
 
 @Component({
   selector: 'app-task-form',
-  imports: [ReactiveFormsModule, TaskTypePipe, TaskPriorityPipe],
+  imports: [ReactiveFormsModule, TaskTypePipe, TaskPriorityPipe, TaskFrequencyPipe],
   templateUrl: './task-form.html',
   styleUrl: './task-form.css',
 })
@@ -38,19 +39,19 @@ export class TaskForm {
     expirationDate: ['', [Validators.required]],
 
     // Bug
-    actualBehaviour: [''],
-    expectedBehaviour: [''],
+    actualBehaviour: [null],
+    expectedBehaviour: [null],
 
     // Improvement
-    affectedFeature: [''],
-    expectedBenefict: [''],
+    affectedFeature: [null],
+    expectedBenefict: [null],
 
     // NewFeature
-    area: [''],
+    area: [null],
 
     // RecurringTask
-    frequency: [''],
-    nextExecution: [''],
+    frequency: [null],
+    nextExecution: [null],
   })
 
   get taskTitle() { return this.form.get('title'); }
@@ -59,8 +60,6 @@ export class TaskForm {
   get taskType() { return this.form.get('taskType'); }
   get expirationDate() { return this.form.get('expirationDate'); }
   get selectedTaskType() { return this.form.get('taskType')?.value; }
-
-
 
   ngOnInit(): void {
     this.title.setTitle('GestorTareas - Crear tarea');

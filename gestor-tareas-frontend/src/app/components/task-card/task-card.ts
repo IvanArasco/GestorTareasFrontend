@@ -5,10 +5,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
 import { NgClass } from '@angular/common';
+import { TaskTypePipe } from '../../pipes/task-type-pipe';
 
 @Component({
   selector: 'app-task-card',
-  imports: [NgClass, DaysLeftPipe, TaskPriorityPipe, RouterLink,RouterLinkActive],
+  imports: [NgClass, DaysLeftPipe, TaskPriorityPipe, TaskTypePipe, RouterLink,RouterLinkActive],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
 })
@@ -26,6 +27,8 @@ export class TaskCard {
   // EventEmitter<number> indica que el evento lleva un número (el id)
   @Output() start = new EventEmitter<number>();
 
+  @Output() edit = new EventEmitter<number>();
+
   @Output() complete = new EventEmitter<number>();
 
   @Output() delete = new EventEmitter<number>();
@@ -33,6 +36,10 @@ export class TaskCard {
   onStart(): void {
     // emit() dispara el evento y pasa el id al padre
     this.start.emit(this.task.id);
+  }
+
+  onEdit(): void{
+    this.edit.emit(this.task.id);
   }
 
   onComplete(): void {

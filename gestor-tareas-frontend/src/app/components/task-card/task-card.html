@@ -1,9 +1,21 @@
 <div class="card p-3 mb-3">
     <div class="d-flex align-items-center justify-content-between mb-2 gap-5 ">
+        <span class="badge bg-warning text-dark">
+            <span> {{ task.taskType | taskType }}</span>
+        </span>
+        <span class="badge d-inline-block" [ngClass]="{
+            'bg-success':  task.taskPriority === 'Low',
+            'bg-warning':  task.taskPriority === 'Medium',
+            'bg-danger':   task.taskPriority === 'High',
+            'bg-dark':     task.taskPriority === 'Critical'
+            }">
+            {{ task.taskPriority | taskPriority }}</span>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mb-2 gap-5 ">
         <p class="card-title">{{ task.title }}</p>
     </div>
 
-    <span class="expiration-date"> {{ task.expirationDate | daysLeft }} </span>
+    <span class="expiration-date"> Vence en: {{ task.expirationDate | daysLeft }} </span>
 
     <div class="d-flex mt-3 justify-content-between">
         <div class="d-flex gap-2">
@@ -33,19 +45,16 @@
                 Eliminar
             </button>
             }
-
         </div>
     </div>
     <div class="d-flex mt-3 justify-content-between">
         <a class="task-responsible badge bg-info" [routerLink]="['/tasks/user', task.userId]" routerLinkActive="active">
             {{task.username}}
         </a>
-        <span class="badge d-inline-block" [ngClass]="{
-            'bg-success':  task.taskPriority === 'Low',
-            'bg-warning':  task.taskPriority === 'Medium',
-            'bg-danger':   task.taskPriority === 'High',
-            'bg-dark':     task.taskPriority === 'Critical'
-            }">
-            {{ task.taskPriority | taskPriority }}</span>
+        @if (authService.isAdmin() || task.userId === authService.userId()) {
+        <!-- (click) llama a onEdit() que emite el @Output() edit -->
+        <button class="btn-edit" (click)="onEdit()">
+        </button>
+        }
     </div>
 </div>
