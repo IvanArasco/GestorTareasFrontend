@@ -1,5 +1,8 @@
 nav {
-    .navbar-brand {
-        color: black;
+    background: var(--color-background);
+    
+    h1.block-title a {
+        color: var(--color-tertiary);
+        font-size: var(--title-size-lg);
     }
 }

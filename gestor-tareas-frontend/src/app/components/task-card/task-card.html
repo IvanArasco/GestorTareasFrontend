@@ -19,7 +19,7 @@
 
     </div>
     <div class="d-flex align-items-center justify-content-between mb-2 gap-5 ">
-        <h3 class="block-title">{{ task.title }}</h3>
+        <h3 class="block-title card-title">{{ task.title }}</h3>
     </div>
 
     <span class="expiration-date"> Vence en: {{ task.expirationDate | daysLeft }} </span>
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="d-flex mt-3 justify-content-between">
-        <a class="task-responsible badge bg-info" [routerLink]="['/tasks/user', task.userId]" routerLinkActive="active">
+        <a class="badge bg-user" [routerLink]="['/tasks/user', task.userId]" routerLinkActive="active">
             {{task.username}}
         </a>
     </div>

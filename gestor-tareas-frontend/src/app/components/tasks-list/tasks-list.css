@@ -1,17 +1,28 @@
 .tasks-list {
     .col-12 {
-        max-height: calc(3 * 145px);
+       max-height: calc(750px);
     }
 
     .pending-tasks,
     .inprogress-tasks,
     .completed-tasks {
-       display: flex;
-       flex-direction: column;
+        display: flex;
+        flex-direction: column;
 
     }
 
     .tasks-scroll-container {
         overflow-y: auto;
+    }
+
+    .bg-totals {
+        background: linear-gradient(90deg, var(--color-primary), var(--color-tertiary));
+        color: var(--color-background);
+    }
+
+    .task-category {
+        color: var(--color-tertiary);
+        border-bottom: 2px solid var(--color-tertiary);
+        padding-bottom: 6px;
     }
 }

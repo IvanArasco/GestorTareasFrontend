@@ -1,15 +1,15 @@
-<div class="tasks-list d-flex justify-content-between align-items-center mb-4">
+<div class="tasks-list d-flex justify-content-between align-items-center">
     <div class="container">
 
         <div class="mb-3">
-            <span class="badge bg-warning text-dark">
+            <span class="badge bg-totals">
                 {{ taskService.totalTasks() }} totales
             </span>
         </div>
 
         <div class="tasks-list row">
             <div class="pending-tasks col-12 col-lg-4 col-md-6">
-                <h2 class="block-title mb-4">Tareas pendientes:</h2>
+                <h2 class="block-title task-category mb-4">Tareas pendientes:</h2>
 
                 <div class="tasks-scroll-container">
                     @for (task of taskService.pendingTasks(); track task.id) {
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="inprogress-tasks col-12 col-lg-4 col-md-6">
-                <h2 class="block-title mb-4">Tareas en progreso:</h2>
+                <h2 class="block-title task-category mb-4">Tareas en progreso:</h2>
 
                 <div class="tasks-scroll-container">
                     @for (task of taskService.inProgressTasks(); track task.id) {
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="completed-tasks col-12 col-lg-4 col-md-6">
-                <h2 class="block-title mb-4">Tareas completadas:</h2>
+                <h2 class="block-title task-category mb-4">Tareas completadas:</h2>
 
                 <div class="tasks-scroll-container">
                     @for (task of taskService.completedTasks(); track task.id) {

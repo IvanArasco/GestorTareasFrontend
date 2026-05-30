@@ -1,15 +1,18 @@
 h1.block-title {
-    font-size: var(--block-title-size-lg);
+    font-size: var(--title-size-lg);
 }
 
 h2.block-title {
-    font-size: var(--block-title-size-md);
+    font-size: var(--title-size-md);
 }
 
 h3.block-title {
-    font-size: var(--block-title-size-xs);
+    font-size: var(--title-size-xs);
 }
 
+body{
+    background: var(--color-background);
+}
 .arrow-back {
     position: relative;
     transition: 0.2s ease-in-out;
@@ -37,10 +40,12 @@ h3.block-title {
 
 .btn-primary {
     background-color: var(--color-primary);
+    border-color:var(--color-primary);
 
     &:hover {
         background-color: white !important;
-        color: #0d6efd !important;
+        color: var(--color-primary);
+ border-color:var(--color-primary);
     }
 
 }
@@ -48,7 +53,7 @@ h3.block-title {
 .btn-success {
     &:hover {
         background-color: white !important;
-        color: #198754 !important;
+        color: var(--color-primary) !important;
     }
 }
 
