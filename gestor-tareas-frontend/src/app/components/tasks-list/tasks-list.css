@@ -1,6 +1,17 @@
 .tasks-list {
     .col-12 {
-        overflow-y: auto;
         max-height: calc(3 * 145px);
+    }
+
+    .pending-tasks,
+    .inprogress-tasks,
+    .completed-tasks {
+       display: flex;
+       flex-direction: column;
+
+    }
+
+    .tasks-scroll-container {
+        overflow-y: auto;
     }
 }

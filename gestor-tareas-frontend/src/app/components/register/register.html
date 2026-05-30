@@ -1,5 +1,5 @@
 <div id="registerForm">
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container d-flex justify-content-center align-items-center mt-5">
         <div class="card shadow-sm p-4" style="width: 360px">
             <div class="card-body">
                 @if (error) {
@@ -30,7 +30,7 @@
                         <input type="date" id="birthdate" name="birthdate" class="form-control"
                             formControlName="birthdate">
                     </div>
-                    <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100">Crear usuario</button>
+                    <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100 mt-2">Crear usuario</button>
                 </form>
             </div>
         </div>

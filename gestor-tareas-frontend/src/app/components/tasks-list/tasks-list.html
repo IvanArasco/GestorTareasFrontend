@@ -5,33 +5,41 @@
             <span class="badge bg-warning text-dark">
                 {{ taskService.totalTasks() }} totales
             </span>
-
         </div>
 
         <div class="tasks-list row">
             <div class="pending-tasks col-12 col-lg-4 col-md-6">
-                <h2 class="block-title">Tareas pendientes:</h2>
-                @for (task of taskService.pendingTasks(); track task.id) {
-                <app-task-card [task]="task" (start)="onStart($event)" (delete)="onDelete($event)" />
-                } @empty {
+                <h2 class="block-title mb-4">Tareas pendientes:</h2>
+
+                <div class="tasks-scroll-container">
+                    @for (task of taskService.pendingTasks(); track task.id) {
+                    <app-task-card [task]="task" (start)="onStart($event)" (delete)="onDelete($event)" />
+                    } @empty {
                     <p> No hay tareas pendientes.</p>
-                }
+                    }
+                </div>
             </div>
             <div class="inprogress-tasks col-12 col-lg-4 col-md-6">
-                <h2 class="block-title">Tareas en progreso:</h2>
-                @for (task of taskService.inProgressTasks(); track task.id) {
-                <app-task-card [task]="task" (complete)="onComplete($event)" (delete)="onDelete($event)" />
-                }@empty {
+                <h2 class="block-title mb-4">Tareas en progreso:</h2>
+
+                <div class="tasks-scroll-container">
+                    @for (task of taskService.inProgressTasks(); track task.id) {
+                    <app-task-card [task]="task" (complete)="onComplete($event)" (delete)="onDelete($event)" />
+                    }@empty {
                     <p> No hay tareas en progreso.</p>
-                }
+                    }
+                </div>
             </div>
             <div class="completed-tasks col-12 col-lg-4 col-md-6">
-                <h2 class="block-title">Tareas completadas:</h2>
-                @for (task of taskService.completedTasks(); track task.id) {
-                <app-task-card [task]="task" (delete)="onDelete($event)" />
-                }@empty {
+                <h2 class="block-title mb-4">Tareas completadas:</h2>
+
+                <div class="tasks-scroll-container">
+                    @for (task of taskService.completedTasks(); track task.id) {
+                    <app-task-card [task]="task" (delete)="onDelete($event)" />
+                    }@empty {
                     <p> No hay tareas completadas.</p>
-                }
+                    }
+                </div>
             </div>
         </div>
     </div>
