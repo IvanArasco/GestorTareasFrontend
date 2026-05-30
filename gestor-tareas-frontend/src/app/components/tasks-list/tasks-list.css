@@ -1,6 +1,6 @@
 .tasks-list {
     .col-12 {
-       max-height: calc(750px);
+        max-height: calc(750px);
     }
 
     .pending-tasks,
@@ -8,7 +8,6 @@
     .completed-tasks {
         display: flex;
         flex-direction: column;
-
     }
 
     .tasks-scroll-container {

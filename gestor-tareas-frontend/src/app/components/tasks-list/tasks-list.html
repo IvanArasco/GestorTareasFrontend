@@ -35,7 +35,7 @@
 
                 <div class="tasks-scroll-container">
                     @for (task of taskService.completedTasks(); track task.id) {
-                    <app-task-card [task]="task" (delete)="onDelete($event)" />
+                    <app-task-card [task]="task" (delete)="onDelete($event)"/>
                     }@empty {
                     <p> No hay tareas completadas.</p>
                     }

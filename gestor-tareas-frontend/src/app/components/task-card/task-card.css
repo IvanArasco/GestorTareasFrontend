@@ -4,6 +4,7 @@
 
     .badge {
         max-width: max-content;
+        background-color: var(--color-secondary);
     }
 
     .bg-user {
@@ -16,16 +17,21 @@
 
         &:hover {
             background: var(--color-background);
-            color: #107c8c;
+            color: var(--color-tertiary);
         }
-
     }
 
-    .card-title {
-        color: #0a4f5e;
+    .block-title {
+        color: var(--color-tertiary);
 
         &::first-letter {
             text-transform: uppercase;
+        }
+    }
+
+    .block-title {
+        &.completed {
+            text-decoration: line-through;
         }
     }
 
@@ -37,7 +43,6 @@
         background-image: url('/pencil.svg');
         background-size: cover;
         transition: 0.2s ease-in-out;
-
 
         &:hover {
             background-image: url(/pencil-hover.svg);

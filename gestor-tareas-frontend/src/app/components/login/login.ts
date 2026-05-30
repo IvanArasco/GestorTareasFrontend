@@ -38,7 +38,7 @@ export class Login implements OnInit {
       this.authService.login(email!, password!)
         .subscribe({
           next: () => {
-            this.title.setTitle('GestorTareas — Mis tareas');
+            this.title.setTitle('GestorTareas - Mis tareas');
             this.router.navigate(['/tasks']);
           },
           error: () => {

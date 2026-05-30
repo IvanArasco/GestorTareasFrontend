@@ -1,66 +1,67 @@
-h1.block-title {
-    font-size: var(--title-size-lg);
-}
-
-h2.block-title {
-    font-size: var(--title-size-md);
-}
-
-h3.block-title {
-    font-size: var(--title-size-xs);
-}
-
-body{
+body {
     background: var(--color-background);
-}
-.arrow-back {
-    position: relative;
-    transition: 0.2s ease-in-out;
-    text-decoration: none;
-    padding-left: 2rem;
-    color: var(--color-primary);
-    font-weight: 600;
 
-    &::before {
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        content: '';
-        background-image: url('/left-arrow.svg');
-        background-size: cover;
-        right: 55px;
+    h1.block-title {
+        font-size: var(--title-size-lg);
     }
 
-    &:hover {
+    h2.block-title {
+        font-size: var(--title-size-md);
+    }
+
+    h3.block-title {
+        font-size: var(--title-size-xs);
+    }
+
+    .arrow-back {
+        position: relative;
+        transition: 0.2s ease-in-out;
+        text-decoration: none;
+        padding-left: 2rem;
+        color: var(--color-primary);
+        font-weight: 600;
+
         &::before {
-            background-image: url('/left-arrow-hover.png');
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            content: '';
+            background-image: url('/left-arrow.svg');
+            background-size: cover;
+            right: 55px;
+        }
+
+        &:hover {
+            &::before {
+                background-image: url('/left-arrow-hover.png');
+            }
         }
     }
-}
 
-.btn-primary {
-    background-color: var(--color-primary);
-    border-color:var(--color-primary);
+    .btn-primary, .btn-primary:disabled {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
 
-    &:hover {
-        background-color: white !important;
-        color: var(--color-primary);
- border-color:var(--color-primary);
+        &:hover {
+            background-color: white !important;
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
     }
 
-}
-
-.btn-success {
-    &:hover {
-        background-color: white !important;
-        color: var(--color-primary) !important;
+    .btn-success {
+        &:hover {
+            background-color: white !important;
+            color: var(--color-primary) !important;
+        }
     }
-}
 
-.btn-danger {
-    &:hover {
-        background-color: white !important;
-        color: #dc3545 !important;
+    .btn-danger {
+        &:hover {
+            background-color: white !important;
+            color: #dc3545 !important;
+        }
     }
 }
 
