@@ -41,7 +41,8 @@ body {
     }
 
     .btn-primary,
-    .btn-primary:disabled, .btn.active, .btn:focus-visible {
+    .btn-primary:disabled,
+    .btn:focus-visible {
         background-color: var(--color-primary);
         border-color: var(--color-primary);
         box-shadow: none;
@@ -52,6 +53,12 @@ body {
             border-color: var(--color-primary);
         }
 
+    }
+
+    .btn.active {
+        background-color: white !important;
+        color: var(--color-primary);
+        border-color: var(--color-primary);
     }
 
     .btn-success {

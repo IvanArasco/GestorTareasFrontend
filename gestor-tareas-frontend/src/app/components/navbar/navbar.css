@@ -1,8 +1,30 @@
 nav {
-    background: var(--color-background);
-    
+   /* background: var(--color-background);*/
+
     h1.block-title a {
         color: var(--color-tertiary);
         font-size: var(--title-size-lg);
     }
+
+    .navbar-toggler{
+        background-color: var(--color-primary);
+        color:var(--color-primary);
+        box-shadow: none;
+    }
+    .navbar-collapse {
+        .register {
+            margin-left: .5rem;
+        }
+
+        &.show {
+            .login{
+                margin-bottom: .5rem;
+            }
+            .register{
+                margin-left: 0;
+            }
+        }
+    }
+
+
 }

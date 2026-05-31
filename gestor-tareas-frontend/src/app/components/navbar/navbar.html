@@ -13,11 +13,11 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- GUEST -->
                     @if (!authService.isAuth()) {
-                    <li class="nav-item">
-                        <a class="btn btn-success" routerLink="/login">Iniciar sesión</a>
+                    <li class="nav-item login">
+                        <a class="btn btn-success" routerLink="/login" routerLinkActive="active">Iniciar sesión</a>
                     </li>
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-primary" routerLink="/register">¿Nuevo usuario?</a>
+                    <li class="nav-item register">
+                        <a class="btn btn-primary" routerLink="/register" routerLinkActive="active">¿Nuevo usuario?</a>
                     </li>
                     <!-- AUTH -->
                     } @else {
@@ -26,7 +26,7 @@
                             routerLinkActive="active">Mis tareas</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-primary" routerLink="/tasks/create">Crear Tarea</a>
+                        <a class="btn btn-primary" routerLink="/tasks/create" routerLinkActive="active">Crear Tarea</a>
                     </li>
                     <li class="nav-item ms-2">
                         <button class="btn btn-danger" (click)="onLogout()">Cerrar sesión</button>
