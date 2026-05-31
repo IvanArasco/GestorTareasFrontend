@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { NotificationService } from '../../services/notification';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,8 @@ export class Login implements OnInit {
   private router = inject(Router);
   private title = inject(Title);
 
+  private notificationService = inject(NotificationService);
+  
   private fb = inject(FormBuilder);
 
   error = "";
@@ -39,6 +42,7 @@ export class Login implements OnInit {
         .subscribe({
           next: () => {
             this.title.setTitle('GestorTareas - Mis tareas');
+            this.notificationService.showSuccess('Sesión iniciada correctamente');
             this.router.navigate(['/tasks']);
           },
           error: () => {

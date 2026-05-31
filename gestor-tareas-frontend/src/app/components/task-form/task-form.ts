@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { TaskTypePipe } from '../../pipes/task-type-pipe';
 import { TaskPriorityPipe } from '../../pipes/task-priority-pipe';
 import { TaskFrequencyPipe } from '../../pipes/task-frequency-pipe';
+import { NotificationService } from '../../services/notification';
 
 @Component({
   selector: 'app-task-form',
@@ -26,6 +27,8 @@ export class TaskForm {
   private route = inject(ActivatedRoute);
   protected taskService = inject(Task);
   private fb = inject(FormBuilder);
+
+  private notificationService = inject(NotificationService);
 
   readonly priorities = Object.values(Priority);
   readonly taskTypes = Object.values(TaskType);
@@ -100,7 +103,10 @@ export class TaskForm {
 
       } else {
         this.taskService.createTask(dto).subscribe({
-          next: () => this.router.navigate(['/tasks']),
+          next: () => {
+            this.router.navigate(['/tasks']),
+            this.notificationService.showSuccess('Tarea creada correctamente')
+          },
           error: () => this.error = 'La creación de la tarea ha fallado.'
         });
       }
