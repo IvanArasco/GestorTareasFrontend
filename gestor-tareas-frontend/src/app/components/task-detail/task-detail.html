@@ -109,7 +109,12 @@
                 <button class="btn btn-danger btn-sm" (click)="onDelete()">
                     Eliminar
                 </button>
+
+                <a class="btn btn-primary btn-sm" [routerLink]="['/tasks/edit', task()!.id]">
+                    Editar tarea
+                </a>
                 }
+
             </div>
         </div>
     </div>

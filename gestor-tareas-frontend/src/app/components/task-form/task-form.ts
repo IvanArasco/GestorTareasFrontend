@@ -42,20 +42,20 @@ export class TaskForm {
     expirationDate: ['', [Validators.required]],
 
     // Bug
-    actualBehaviour: [null],
-    expectedBehaviour: [null],
+    actualBehaviour: this.fb.control<string | null>(null),
+    expectedBehaviour: this.fb.control<string | null>(null),
 
     // Improvement
-    affectedFeature: [null],
-    expectedBenefict: [null],
+    affectedFeature: this.fb.control<string | null>(null),
+    expectedBenefict: this.fb.control<string | null>(null),
 
     // NewFeature
-    area: [null],
+    area: this.fb.control<DevelopmentArea | null>(null),
 
     // RecurringTask
-    frequency: [null],
-    nextExecution: [null],
-  })
+    frequency: this.fb.control<Frequency | null>(null),
+    nextExecution: this.fb.control<string | null>(null),
+  });
 
   get taskTitle() { return this.form.get('title'); }
   get description() { return this.form.get('description'); }
@@ -69,10 +69,21 @@ export class TaskForm {
 
     if (id) {
       this.taskId = Number(id);
-
       this.title.setTitle('GestorTareas - Editar tarea');
-    } else {
 
+      // Load existing task data
+      this.taskService.getTaskById(this.taskId).subscribe({
+        next: (taskData) => {
+          if (taskData) {
+            this.form.patchValue(taskData);
+          }
+        },
+        error: () => {
+          this.error = 'No se pudieron cargar los datos de la tarea.';
+        }
+      });
+
+    } else {
       this.title.setTitle('GestorTareas - Crear tarea');
 
     }

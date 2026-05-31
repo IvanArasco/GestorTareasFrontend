@@ -6,10 +6,12 @@ body {
     }
 
     h2.block-title {
+        color: var(--color-tertiary);
         font-size: var(--title-size-md);
     }
 
     h3.block-title {
+        color: var(--color-tertiary);
         font-size: var(--title-size-xs);
     }
 
@@ -38,7 +40,8 @@ body {
         }
     }
 
-    .btn-primary, .btn-primary:disabled {
+    .btn-primary,
+    .btn-primary:disabled {
         background-color: var(--color-primary);
         border-color: var(--color-primary);
 
@@ -61,6 +64,20 @@ body {
         &:hover {
             background-color: white !important;
             color: #dc3545 !important;
+        }
+    }
+
+    form {
+        max-width: 600px;
+
+        .block-title {
+            text-align: center;
+            color: var(--color-secondary);
+        }
+
+        .form-label {
+            color: var(--color-secondary);
+            margin-top: 0.5rem;
         }
     }
 }

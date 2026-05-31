@@ -1,9 +1,10 @@
 <div class="task-form">
     <div class="container">
-        
         <a class="arrow-back" routerLink="">Volver</a>
 
-        <form class="card shadow-sm p-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form class="card shadow-sm p-4 m-auto mt-2 mb-5" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h2 class="block-title mb-4">{{ taskId !== undefined ?
+                'Edición de tarea' : 'Creación de tarea' }}</h2>
             <label class="form-label" for="title">Título*</label>
             <div class="input-group">
                 <input type="text" id="title" name="title" class="form-control" formControlName="title">
@@ -14,13 +15,14 @@
                     <input type="text" id="description" name="description" class="form-control"
                         formControlName="description">
                 </div>
-
+                @if (taskId === undefined) {
                 <label class="form-label" for="taskType">Tipo de tarea:</label>
                 <select formControlName="taskType" class="form-select">
                     @for (type of taskTypes; track type) {
                     <option [value]="type">{{ type | taskType }}</option>
                     }
                 </select>
+                }
 
                 <label class="form-label" for="taskPriority">Prioridad de tarea:</label>
                 <select formControlName="taskPriority" class="form-select">
@@ -75,7 +77,8 @@
                     <input type="date" class="form-control" formControlName="nextExecution">
                 </div>
                 }
-                <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100"> {{ taskId !== undefined ? 'Editar tarea' : 'Crear tarea' }}</button>
+                <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100"> {{ taskId !== undefined ?
+                    'Editar tarea' : 'Crear tarea' }}</button>
                 <small> Los campos con * son obligatorios</small>
             </div>
         </form>

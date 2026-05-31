@@ -23,7 +23,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
          notificationService.showError('No tienes permisos para esta operación');
       }
       if (error.status === 0) {
-        // Error de red — servidor no disponible
+        // Error de red - servidor no disponible
         notificationService.showError('No se puede conectar con el servidor');
       }
       // Propagar el error para que los servicios también lo reciban

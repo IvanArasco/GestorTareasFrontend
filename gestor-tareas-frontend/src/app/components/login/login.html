@@ -1,36 +1,37 @@
 <div id="loginForm">
   <div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
     <div class="card shadow-sm p-4" style="width: 360px">
-      <div class="card-body">
-        @if (error) {
+
+      @if (error) {
         <div class="alert alert-danger py-2 mb-3">{{ error }}</div>
-        }
-        <h1 class="card-title mb-4 text-center">Iniciar sesión</h1>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <label class="sr-only form-label" for="inlineFormEmail">Correo electrónico</label>
+      }
+      
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h2 class="block-title mb-3">Iniciar sesión</h2>
+        <label class="sr-only form-label" for="inlineFormEmail">Correo electrónico</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+          </div>
+          <input type="email" id="inlineFormEmail" class="form-control" placeholder="usuario@empresa.com"
+            formControlName="email">
+          <div class="form-text mb-2">Nunca compartiremos tu email sin tu consentimiento.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="password">Contraseña</label>
           <div class="input-group">
             <div class="input-group-prepend">
-              <div class="input-group-text">@</div>
-            </div>
-            <input type="email" id="inlineFormEmail" class="form-control" placeholder="usuario@empresa.com"
-              formControlName="email">
-            <div class="form-text mb-2">Nunca compartiremos tu email sin tu consentimiento.</div>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" for="password">Contraseña</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <img src="/lock.svg" alt="lock" width="16" height="16">
-                </div>
+              <div class="input-group-text">
+                <img src="/lock.svg" alt="lock" width="16" height="16">
               </div>
-              <input type="password" id="password" name="password" class="form-control" formControlName="password">
             </div>
-            <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100 mt-4">Entrar</button>
-            </div>
-        </form>
-      </div>
+            <input type="password" id="password" name="password" class="form-control" formControlName="password">
+          </div>
+          <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100 mt-4">Entrar</button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>
