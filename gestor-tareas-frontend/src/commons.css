@@ -41,9 +41,10 @@ body {
     }
 
     .btn-primary,
-    .btn-primary:disabled {
+    .btn-primary:disabled, .btn.active, .btn:focus-visible {
         background-color: var(--color-primary);
         border-color: var(--color-primary);
+        box-shadow: none;
 
         &:hover {
             background-color: white !important;
