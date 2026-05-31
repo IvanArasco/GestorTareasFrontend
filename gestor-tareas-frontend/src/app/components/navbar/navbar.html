@@ -13,23 +13,23 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- GUEST -->
                     @if (!authService.isAuth()) {
-                    <li class="nav-item login">
+                    <li class="nav-item btn-login">
                         <a class="btn btn-success" routerLink="/login" routerLinkActive="active">Iniciar sesión</a>
                     </li>
-                    <li class="nav-item register">
+                    <li class="nav-item btn-register">
                         <a class="btn btn-primary" routerLink="/register" routerLinkActive="active">¿Nuevo usuario?</a>
                     </li>
                     <!-- AUTH -->
                     } @else {
-                    <li class="nav-item">
+                    <li class="nav-item btn-my-tasks">
                         <a class="btn btn-primary" [routerLink]="['/tasks/user', authService.userId()]"
                             routerLinkActive="active">Mis tareas</a>
                     </li>
-                    <li class="nav-item ms-2">
+                    <li class="nav-item btn-create-task">
                         <a class="btn btn-primary" routerLink="/tasks/create" routerLinkActive="active">Crear Tarea</a>
                     </li>
-                    <li class="nav-item ms-2">
-                        <button class="btn btn-danger" (click)="onLogout()">Cerrar sesión</button>
+                    <li class="nav-item btn-logout">
+                        <button class="btn btn-danger " (click)="onLogout()">Cerrar sesión</button>
                     </li>
                     }
                 </ul>

@@ -1,6 +1,4 @@
 nav {
-   /* background: var(--color-background);*/
-
     h1.block-title a {
         color: var(--color-tertiary);
         font-size: var(--title-size-lg);
@@ -11,20 +9,17 @@ nav {
         color:var(--color-primary);
         box-shadow: none;
     }
+
     .navbar-collapse {
-        .register {
+        .btn-register,.btn-logout, .btn-create-task {
             margin-left: .5rem;
         }
 
         &.show {
-            .login{
-                margin-bottom: .5rem;
-            }
-            .register{
+            .btn-login, .btn-my-tasks, .btn-register, .btn-logout, .btn-create-task{
                 margin-left: 0;
+                margin-bottom: .5rem;
             }
         }
     }
-
-
 }

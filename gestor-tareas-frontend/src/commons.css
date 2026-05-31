@@ -106,4 +106,8 @@ body {
 @media (max-width: 767px) {}
 
 /* solo móvil estándar-pequeños */
-@media (max-width: 576px) {}
+@media (max-width: 344px) {
+    .navbar-toggler{
+        margin-bottom: 1rem;
+    }
+}
