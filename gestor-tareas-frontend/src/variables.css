@@ -9,4 +9,11 @@
     --title-size-lg: calc(var(--font-size-base) * 2);
     --title-size-md: calc(var(--font-size-base) * 1.5);
     --title-size-xs: calc(var(--font-size-base) * 1.25);
+    --bs-btn-font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .btn{
+        --bs-btn-font-size: 0.75rem;
+    }
 }
