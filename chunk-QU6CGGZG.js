@@ -1,0 +1,1 @@
+import{E as n}from"./chunk-WS6MQX26.js";var i=class e{transform(r){switch(r){case"Daily":return"Diaria";case"Weekly":return"Semanal";case"Monthly":return"Mensual";default:return"Sin especificar"}}static \u0275fac=function(t){return new(t||e)};static \u0275pipe=n({name:"taskFrequency",type:e,pure:!0})};export{i as a};
