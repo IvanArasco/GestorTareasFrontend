@@ -1,7 +1,7 @@
 import { computed, Injectable, signal, inject } from '@angular/core';
 import { Status, TaskRequestDto, TaskResponseDto } from '../models/task.model';
 import { HttpClient } from '@angular/common/http';
-import { catchError, of, tap } from 'rxjs';
+import { catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -38,8 +38,7 @@ export class Task {
     return this.http.get<TaskResponseDto[]>(
       `${this.baseUrl}/tasks`
     ).pipe(
-      tap(tasks => this._tasks.set(tasks)),
-      catchError(err => this.showError(err))
+      tap(tasks => this._tasks.set(tasks))
     );
   }
 
@@ -47,9 +46,7 @@ export class Task {
   getTaskById(id: number) {
     return this.http.get<TaskResponseDto>(
       `${this.baseUrl}/tasks/${id}`
-    ).pipe(
-      catchError(err => this.showError(err))
-    );
+    )
   }
 
   // GET /api/tasks/user:id
@@ -57,8 +54,7 @@ export class Task {
     return this.http.get<TaskResponseDto[]>(
       `${this.baseUrl}/tasks/by-user/${userId}`
     ).pipe(
-      tap(tasks => this._tasks.set(tasks)),
-      catchError(err => this.showError(err))
+      tap(tasks => this._tasks.set(tasks))
     );
   }
 
@@ -66,23 +62,21 @@ export class Task {
     return this.http.post<TaskResponseDto>(
       `${this.baseUrl}/tasks`, dto
     ).pipe(
-      tap(task => this._tasks.update(tasks => [...tasks, task])),
-      catchError(err => this.showError(err))
+      tap(task => this._tasks.update(tasks => [...tasks, task]))
     );
   }
 
-  edit(id: number, dto: TaskRequestDto){
+  edit(id: number, dto: TaskRequestDto) {
     return this.http.put<TaskResponseDto>(
       `${this.baseUrl}/tasks/${id}`, dto
     ).pipe(
       tap(updatedTask => {
         if (updatedTask) {
-          this._tasks.update(tasks => 
+          this._tasks.update(tasks =>
             tasks.map(t => t.id === id ? updatedTask : t)
           );
         }
-      }),
-      catchError(err => this.showError(err))
+      })
     );
   }
 
@@ -92,8 +86,7 @@ export class Task {
     ).pipe(
       tap(() => this._tasks.update(tasks =>
         tasks.map(t => t.id === id ? { ...t, taskStatus: Status.Completed } : t)
-      )),
-      catchError(err => this.showError(err))
+      ))
     );
   }
 
@@ -103,8 +96,7 @@ export class Task {
     ).pipe(
       tap(() => this._tasks.update(tasks =>
         tasks.map(t => t.id === id ? { ...t, taskStatus: Status.InProgress } : t)
-      )),
-      catchError(err => this.showError(err))
+      ))
     );
   }
 
@@ -112,13 +104,7 @@ export class Task {
     return this.http.delete<void>(
       `${this.baseUrl}/tasks/${id}`
     ).pipe(
-      tap(() => this._tasks.update(tasks => tasks.filter(t => t.id !== id))),
-      catchError(err => this.showError(err))
+      tap(() => this._tasks.update(tasks => tasks.filter(t => t.id !== id)))
     );
-  }
-
-  private showError(error: any) {
-    console.error('Error HTTP:', error);
-    return of(null);
   }
 }

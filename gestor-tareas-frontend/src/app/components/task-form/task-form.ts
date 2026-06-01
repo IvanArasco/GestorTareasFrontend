@@ -98,16 +98,22 @@ export class TaskForm {
       if (this.taskId !== undefined) {
         this.taskService.edit(this.taskId, dto).subscribe({
           next: () => this.router.navigate(['/tasks']),
-          error: () => this.error = 'La edición de la tarea ha fallado.'
+          error: () => {
+            this.error = 'La edición de la tarea ha fallado.'
+            this.notificationService.showError('La edición de la tarea ha fallado.')
+          }
         });
 
       } else {
         this.taskService.createTask(dto).subscribe({
           next: () => {
-            this.router.navigate(['/tasks']),
-            this.notificationService.showSuccess('Tarea creada correctamente')
+            this.notificationService.showSuccess('Tarea creada correctamente.');
+            this.router.navigate(['/tasks']);
           },
-          error: () => this.error = 'La creación de la tarea ha fallado.'
+          error: (err) => {
+            const message = err.error ?? 'La creación de la tarea ha fallado.';
+            this.notificationService.showError(message);
+          }
         });
       }
     } else {

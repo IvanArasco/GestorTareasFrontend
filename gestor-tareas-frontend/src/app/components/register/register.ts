@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { NotificationService } from '../../services/notification';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,8 @@ export class Register implements OnInit {
 
   private fb = inject(FormBuilder);
 
+  private notificationService = inject(NotificationService);
+  
   error = "";
 
   form = this.fb.group({
@@ -44,14 +47,17 @@ export class Register implements OnInit {
         .subscribe({
           next: () => {
             this.title.setTitle('GestorTareas - Mis tareas');
+            this.notificationService.showSuccess('Se ha creado la cuenta correctamente.');
             this.router.navigate(['/tasks']);
           },
           error: () => {
             this.error = 'Email o contraseña incorrectos.';
+            this.notificationService.showError('Email o contraseña incorrectos.');
           }
         });
     } else {
       this.error = 'Completa todos los campos.';
+      this.notificationService.showError('Completa todos los campos.');
     }
   }
 }

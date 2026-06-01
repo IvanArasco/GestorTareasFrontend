@@ -47,10 +47,12 @@ export class Login implements OnInit {
           },
           error: () => {
             this.error = 'Email o contraseña incorrectos';
+             this.notificationService.showError('No se ha podido iniciar sesión.');
           }
         });
     } else {
       this.error = 'Completa todos los campos.';
+      this.notificationService.showError('Rellena todos los campos.');
     }
   }
 }
