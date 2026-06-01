@@ -1,7 +1,8 @@
 import { computed, Injectable, signal, inject } from '@angular/core';
 import { Status, TaskRequestDto, TaskResponseDto } from '../models/task.model';
 import { HttpClient } from '@angular/common/http';
-import { catchError, of, tap, throwError } from 'rxjs';
+import { tap} from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,9 @@ import { catchError, of, tap, throwError } from 'rxjs';
 export class Task {
 
   private http = inject(HttpClient);
-  private baseUrl = 'https://localhost:7001/api';
+  private baseUrl = environment.apiUrl;
+  // dev : 'https://localhost:7001/api';
+  // prod : 'https://api.gestortareas.com/api';
 
   private _tasks = signal<TaskResponseDto[]>([]);
 
