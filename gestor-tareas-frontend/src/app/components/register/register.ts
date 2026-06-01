@@ -20,7 +20,7 @@ export class Register implements OnInit {
   private fb = inject(FormBuilder);
 
   private notificationService = inject(NotificationService);
-  
+
   error = "";
 
   form = this.fb.group({
@@ -34,7 +34,7 @@ export class Register implements OnInit {
   get birthdate() { return this.form.get('birthdate'); }
   get email() { return this.form.get('email'); }
   get password() { return this.form.get('password'); }
-  
+
   ngOnInit(): void {
     this.title.setTitle('GestorTareas - Registro');
   }
@@ -50,9 +50,9 @@ export class Register implements OnInit {
             this.notificationService.showSuccess('Se ha creado la cuenta correctamente.');
             this.router.navigate(['/tasks']);
           },
-          error: () => {
-            this.error = 'Email o contraseña incorrectos.';
-            this.notificationService.showError('Email o contraseña incorrectos.');
+          error: (err) => {
+            const message = err.error ?? 'Error al registrar.';
+            this.notificationService.showError(message);
           }
         });
     } else {
