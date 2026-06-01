@@ -98,9 +98,9 @@ export class TaskForm {
       if (this.taskId !== undefined) {
         this.taskService.edit(this.taskId, dto).subscribe({
           next: () => this.router.navigate(['/tasks']),
-          error: () => {
-            this.error = 'La edición de la tarea ha fallado.'
-            this.notificationService.showError('La edición de la tarea ha fallado.')
+          error: (err) => {
+              const message = err.error ?? 'La edición de la tarea ha fallado.';
+            this.notificationService.showError(message)
           }
         });
 

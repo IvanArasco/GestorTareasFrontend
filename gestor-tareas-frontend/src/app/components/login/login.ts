@@ -47,7 +47,7 @@ export class Login implements OnInit {
           },
           error: () => {
             this.error = 'Email o contraseña incorrectos';
-             this.notificationService.showError('No se ha podido iniciar sesión.');
+             this.notificationService.showError('Email o contraseña incorrectos.');
           }
         });
     } else {
