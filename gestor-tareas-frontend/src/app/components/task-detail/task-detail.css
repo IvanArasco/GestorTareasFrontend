@@ -2,11 +2,16 @@
     margin: 1.5rem auto;
     max-width: 600px;
 
-     .block-title {
+    .block-title {
         color: var(--color-tertiary);
 
         &::first-letter {
             text-transform: uppercase;
         }
+    }
+
+
+    .list-group-item span:last-child {
+        text-align: end;
     }
 }

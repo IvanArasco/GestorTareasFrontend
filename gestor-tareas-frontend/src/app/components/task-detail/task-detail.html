@@ -95,7 +95,7 @@
                 }
             </ul>
 
-            <div class="d-flex gap-2 mt-3">
+            <div class="d-flex gap-2 mt-3 justify-content-end">
                 @if (task()!.taskStatus === 'InProgress' && (authService.isAdmin() || task()!.userId ===
                 authService.userId()))
                 {
@@ -106,13 +106,14 @@
                 }
 
                 @if (authService.isAdmin() || task()!.userId === authService.userId()) {
-                <button class="btn btn-danger btn-sm" (click)="onDelete()">
-                    Eliminar
-                </button>
 
                 <a class="btn btn-primary btn-sm" [routerLink]="['/tasks/edit', task()!.id]">
                     Editar tarea
                 </a>
+
+                <button class="btn btn-danger btn-sm" (click)="onDelete()">
+                    Eliminar
+                </button>
                 }
 
             </div>
