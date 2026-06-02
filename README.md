@@ -4,7 +4,14 @@ DEFINICIÓN DEL PROYECTO:
 * Conexión al Back en .NET : https://github.com/IvanArasco/GestorTareasBackend
 * Notificación al usuario de las excepciones del back.
 * Listado de tareas, divididas en tres columnas.
+* Importación de Bootstrap. Uso de variables para estilos, tamaños de fuente...
 
 IMAGEN LISTADO TAREAS:
 
 <img width="1766" height="887" alt="{FC112EF1-A7C8-49E2-92EC-6F5B932237C9}" src="https://github.com/user-attachments/assets/ddf1af7a-c609-4418-870c-9b5a038ea99c" />
+
+Funcionalidades:
+* CRUD completo y cambio de estado de las tareas mediante interfaz.
+* Filtrado por usuario responsable.
+* Ver tareas del usuario con sesión iniciada mediante un botón en el navegador.
+* Nav-toggler para desplegar el menú de la barra de navegación.
