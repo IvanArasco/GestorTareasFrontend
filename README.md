@@ -1,9 +1,9 @@
 DEFINICIÓN DEL PROYECTO:
 * Gestor de tareas.
 * Angular (Typescript). Principios de Usabilidad y Accesibilidad. Responsive (adaptado a móvil y tablet).
-* Conexión al Back en .NET : https://github.com/IvanArasco/GestorTareasBackend
-* Notificación al usuario del back-end (mensajes de éxito y de error)
-* Listado de tareas, divididas en columnas según su estado (Pendiente, en progreso, completadas)
+* Conexión al Back en .NET : https://github.com/IvanArasco/GestorTareasBackend.
+* Notificación al usuario del back-end (mensajes de éxito y de error).
+* Listado de tareas, divididas en columnas según su estado (Pendiente, en progreso, completadas).
 * Implementación de Bootstrap. Uso de variables para estilos, tamaños de fuentes...
 * Guards, Interceptors y Pipes.
   
