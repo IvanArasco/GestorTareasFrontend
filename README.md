@@ -6,4 +6,5 @@ DEFINICIÓN DEL PROYECTO:
 * Listado de tareas, divididas en tres columnas.
 
 IMAGEN LISTADO TAREAS:
+
 <img width="1766" height="887" alt="{FC112EF1-A7C8-49E2-92EC-6F5B932237C9}" src="https://github.com/user-attachments/assets/ddf1af7a-c609-4418-870c-9b5a038ea99c" />
