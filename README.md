@@ -5,9 +5,12 @@ DEFINICIÓN DEL PROYECTO:
 * Notificación al usuario del back-end (mensajes de éxito y de error)
 * Listado de tareas, divididas en tres columnas.
 * Implementación de Bootstrap. Uso de variables para estilos, tamaños de fuente...
+* Guards, Interceptors y Pipes.
   
 Funcionalidades:
 * CRUD completo y cambio de estado de las tareas mediante interfaz.
+  * Edición, cambios de estado y eliminación solo de tareas propias (como usuario normal, como admin control total).
+  * Crear y ver tareas (cualquier usuario).
 * Filtrado por usuario responsable.
 * Ver tareas del usuario con sesión iniciada mediante un botón en el navegador.
 * Nav-toggler para desplegar el menú de la barra de navegación.
