@@ -105,7 +105,7 @@ export class TaskForm {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const dto = this.form.value as TaskRequestDto;
+      const dto = this.form.getRawValue() as TaskRequestDto;
       if (this.taskId !== undefined) {
         this.taskService.edit(this.taskId, dto).subscribe({
           next: () => this.router.navigate(['/tasks']),
