@@ -37,6 +37,8 @@ export class TaskForm {
 
   error = "";
 
+  taskStatus: string = '';
+
   form = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
     description: ['', [Validators.minLength(10), Validators.maxLength(200)]],
@@ -67,6 +69,7 @@ export class TaskForm {
   get expirationDate() { return this.form.get('expirationDate'); }
   get selectedTaskType() { return this.form.get('taskType')?.value; }
 
+  
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
@@ -78,7 +81,15 @@ export class TaskForm {
       this.taskService.getTaskById(this.taskId).subscribe({
         next: (taskData) => {
           if (taskData) {
+
+            this.taskStatus = taskData.taskStatus;
+
             this.form.patchValue(taskData);
+
+            if (this.taskStatus === 'Completed') {
+              this.form.get('taskPriority')?.disable();
+              this.form.get('expirationDate')?.disable(); 
+            }
           }
         },
         error: () => {

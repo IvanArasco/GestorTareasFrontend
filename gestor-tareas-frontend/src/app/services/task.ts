@@ -2,7 +2,7 @@ import { computed, Injectable, signal, inject } from '@angular/core';
 import { Status, TaskRequestDto, TaskResponseDto } from '../models/task.model';
 import { HttpClient } from '@angular/common/http';
 import { tap} from 'rxjs';
-import { environment_dev } from '../../environments/environment.dev';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { environment_dev } from '../../environments/environment.dev';
 export class Task {
 
   private http = inject(HttpClient);
-  private baseUrl = environment_dev.apiUrl;
+  private baseUrl = environment.apiUrl;
   // dev : 'https://localhost:7001/api';
   // prod : 'https://api.gestortareas.com/api';
 
